@@ -258,3 +258,19 @@ def generate_companion_reply(user_message: str) -> dict:
         },
         "core": core,
     }
+
+# ------------------------------------------------------------
+# Resonance resolver (placeholder)
+# ------------------------------------------------------------
+def _resonance_resolve_engine(reasoning_domains: dict, plan: dict, emotion: str) -> dict:
+    """
+    Minimal safe placeholder so the intelligence core can run.
+    You can expand this later with real resonance logic.
+    """
+    return {
+        "signal": "stable",
+        "emotion": emotion,
+        "alignment": plan.get("mode", "diagnostic"),
+        "notes": "Resonance placeholder active",
+    }
+
