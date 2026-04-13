@@ -3,6 +3,7 @@ from typing import Literal
 
 Mode = Literal["analytical", "creative", "strategic", "supportive", "diagnostic"]
 
+
 def _detect_mode(user_message: str, emotion: str) -> Mode:
     msg = user_message.lower()
     if any(k in msg for k in ("plan", "roadmap", "strategy", "next step", "design a better flow")):
@@ -15,6 +16,7 @@ def _detect_mode(user_message: str, emotion: str) -> Mode:
         return "supportive"
     return "diagnostic"
 
+
 def _perception_layer(user_message: str) -> dict:
     text = user_message.strip()
     lower = text.lower()
@@ -26,6 +28,21 @@ def _perception_layer(user_message: str) -> dict:
         "length": len(tokens),
         "has_question": "?" in text or any(t in tokens for t in ("why", "how", "what")),
     }
+
+
+def _extract_themes(messages: list[str]) -> list[str]:
+    joined = " ".join(m.lower() for m in messages)
+    themes: list[str] = []
+    if any(k in joined for k in ("stuck", "blocked", "keep happening", "loop", "stuck at the same point")):
+        themes.append("recurring friction / stuck loops")
+    if any(k in joined for k in ("plan", "roadmap", "next step", "structure", "design a better flow")):
+        themes.append("planning and structure")
+    if any(k in joined for k in ("workflow", "system", "pipeline", "flow")):
+        themes.append("workflow / system design")
+    if any(k in joined for k in ("overwhelmed", "tired", "burnt", "draining")):
+        themes.append("load / overwhelm")
+    return themes
+
 
 def _context_layer(session_id: str, recent_context: list[dict], emotion: str, tone: str) -> dict:
     last_user = None
@@ -44,18 +61,6 @@ def _context_layer(session_id: str, recent_context: list[dict], emotion: str, to
         "themes": themes,
     }
 
-def _extract_themes(messages: list[str]) -> list[str]:
-    joined = " ".join(m.lower() for m in messages)
-    themes: list[str] = []
-    if any(k in joined for k in ("stuck", "blocked", "keep happening", "loop", "stuck at the same point")):
-        themes.append("recurring friction / stuck loops")
-    if any(k in joined for k in ("plan", "roadmap", "next step", "structure", "design a better flow")):
-        themes.append("planning and structure")
-    if any(k in joined for k in ("workflow", "system", "pipeline", "flow")):
-        themes.append("workflow / system design")
-    if any(k in joined for k in ("overwhelmed", "tired", "burnt", "draining")):
-        themes.append("load / overwhelm")
-    return themes
 
 def _planning_layer(perception: dict, context: dict, mode: Mode) -> dict:
     if mode == "strategic":
@@ -111,35 +116,44 @@ def _planning_layer(perception: dict, context: dict, mode: Mode) -> dict:
         "planning_skeleton": planning_skeleton,
     }
 
+
 def _reasoning_domains(perception: dict, context: dict, emotion: str) -> dict:
     """
     Safety-first multi-domain reasoning.
     No diagnosis. Only factors + questions.
     """
-    msg = perception["lower"]
     themes = context.get("themes", [])
 
     body = {
         "signals": [],
         "questions": [
             "Have you been more tired, wired, or low-energy than usual lately?",
-            "Has your sleep, food, or basic rhythm been off in a way you can feel?"
+            "Has your sleep, food, or basic rhythm been off in a way you can feel?",
         ],
     }
     mind = {
         "signals": [],
         "questions": [
             "Is there a story you tell yourself at this snag point (e.g. 'I always fail here')?",
-            "Does this feel more like anxiety, boredom, perfectionism, or something else?"
+            "Does this feel more like anxiety, boredom, perfectionism, or something else?",
         ],
     }
     workflow = {
         "signals": [],
         "questions": [
             "Is this snag tied to a specific tool, step, or handoff in your process?",
-            "Would this feel easier if the step were smaller or framed differently?"
+            "Would this feel easier if the step were smaller or framed differently?",
         ],
-        }
+    }
+
+    return {
+        "body": body,
+        "mind": mind,
+        "workflow": workflow,
+        "themes": themes,
+        "emotion": emotion,
+    }
+
 
 def _internal_dialogue(perception: dict, context: dict, plan: dict) -> list[str]:
     voices: list[str] = []
@@ -161,6 +175,7 @@ def _internal_dialogue(perception: dict, context: dict, plan: dict) -> list[str]
         voices.append("[strategist] I’ll roughly follow these steps: " + " ".join(plan["steps"]))
 
     return voices
+
 
 def _expression_layer(
     perception: dict,
@@ -191,6 +206,24 @@ def _expression_layer(
 
     return base + mode_line
 
+
+# ------------------------------------------------------------
+# Resonance resolver (safe placeholder)
+# ------------------------------------------------------------
+def _resonance_resolve_engine(reasoning_domains: dict, plan: dict, emotion: str) -> dict:
+    """
+    Minimal safe placeholder so the intelligence core can run.
+    You can expand this later with real resonance logic.
+    """
+    return {
+        "signal": "stable",
+        "emotion": emotion,
+        "alignment": plan.get("mode", "diagnostic"),
+        "notes": "Resonance placeholder active",
+        "domains": list(reasoning_domains.keys()),
+    }
+
+
 def run_intelligence_core(
     session_id: str,
     user_message: str,
@@ -220,6 +253,7 @@ def run_intelligence_core(
         "summary": summary,
     }
 
+
 # ------------------------------------------------------------
 # Public wrapper expected by phb_api.py
 # ------------------------------------------------------------
@@ -229,7 +263,7 @@ def generate_companion_reply(user_message: str) -> dict:
     without needing session management or context plumbing.
     """
     session_id = "default"
-    recent_context = []
+    recent_context: list[dict] = []
     emotion = "neutral"
     tone = "warm"
 
@@ -241,7 +275,6 @@ def generate_companion_reply(user_message: str) -> dict:
         tone=tone,
     )
 
-    # Convert core output into the API's expected structure
     return {
         "engine": "PHB INTELLIGENCE CORE v1",
         "id": f"core-{int(core['ts'])}",
@@ -258,19 +291,3 @@ def generate_companion_reply(user_message: str) -> dict:
         },
         "core": core,
     }
-
-# ------------------------------------------------------------
-# Resonance resolver (placeholder)
-# ------------------------------------------------------------
-def _resonance_resolve_engine(reasoning_domains: dict, plan: dict, emotion: str) -> dict:
-    """
-    Minimal safe placeholder so the intelligence core can run.
-    You can expand this later with real resonance logic.
-    """
-    return {
-        "signal": "stable",
-        "emotion": emotion,
-        "alignment": plan.get("mode", "diagnostic"),
-        "notes": "Resonance placeholder active",
-    }
-
