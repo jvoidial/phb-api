@@ -17,9 +17,7 @@ from flask import Flask, request, jsonify
 API_NAME = "PHB Universal API"
 API_VERSION = "v1"
 
-# Simple in‑memory key store for now (backed by env or later DB)
 VALID_KEYS = set()
-
 env_key = os.getenv("PHB_API_KEY")
 if env_key:
     VALID_KEYS.add(env_key)
@@ -34,33 +32,17 @@ def validate_key(auth_header: Optional[str]) -> None:
 
 
 # -----------------------------
-# Core PHB engine stub
-# (replace with real PHB calls)
+# REAL PHB ENGINE INTEGRATION
 # -----------------------------
+
+from phb_intelligence_core import generate_companion_reply
+
 
 def run_phb_companion(message: str) -> Dict[str, Any]:
     """
-    This is the integration point:
-    here you call your real PHB engine
-    (scripts, runtime, JSON files, etc.)
-    and return a structured JSON payload.
+    Calls the real PHB intelligence engine and returns its structured JSON output.
     """
-    ts = time.time()
-    return {
-        "engine": "PHB COMPANION REPLY ORCHESTRATOR v1",
-        "id": str(uuid.uuid4()),
-        "ts": ts,
-        "user_message": message,
-        "reply": {
-            "text": f"I heard: {message}. This is a placeholder reply from PHB.",
-            "mode": "companion",
-            "orientation": "growth-directed",
-        },
-        "meta": {
-            "api": API_NAME,
-            "version": API_VERSION,
-        },
-    }
+    return generate_companion_reply(message)
 
 
 # -----------------------------
@@ -104,7 +86,6 @@ async def mindstate_endpoint(
     message = payload.get("message", "")
     if not message:
         raise HTTPException(status_code=400, detail="Field 'message' is required")
-    # For now, reuse same stub; later, call PHB mind dashboard
     result = run_phb_companion(message)
     result["engine"] = "PHB MINDSTATE API v1"
     return JSONResponse(content=result)
@@ -131,7 +112,6 @@ def chat_endpoint():
         return jsonify({"detail": "Field 'message' is required"}), 400
 
     result = run_phb_companion(message)
-    # For chat, return a slimmer payload
     return jsonify(
         {
             "reply": result["reply"]["text"],
@@ -150,12 +130,9 @@ if __name__ == "__main__":
     mode = os.getenv("PHB_API_MODE", "fastapi").lower()
 
     if mode == "flask":
-        # Human/chat mode
         flask_app.run(host="0.0.0.0", port=int(os.getenv("PORT", "8000")))
     else:
-        # Machine/services mode (FastAPI via uvicorn)
         import uvicorn
-
         uvicorn.run(
             "phb_api:fastapi_app",
             host="0.0.0.0",
