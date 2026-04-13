@@ -219,3 +219,42 @@ def run_intelligence_core(
         "internal_dialogue": dialogue,
         "summary": summary,
     }
+
+# ------------------------------------------------------------
+# Public wrapper expected by phb_api.py
+# ------------------------------------------------------------
+def generate_companion_reply(user_message: str) -> dict:
+    """
+    Thin wrapper so the API can call the intelligence core
+    without needing session management or context plumbing.
+    """
+    session_id = "default"
+    recent_context = []
+    emotion = "neutral"
+    tone = "warm"
+
+    core = run_intelligence_core(
+        session_id=session_id,
+        user_message=user_message,
+        recent_context=recent_context,
+        emotion=emotion,
+        tone=tone,
+    )
+
+    # Convert core output into the API's expected structure
+    return {
+        "engine": "PHB INTELLIGENCE CORE v1",
+        "id": f"core-{int(core['ts'])}",
+        "ts": core["ts"],
+        "user_message": user_message,
+        "reply": {
+            "text": core["summary"],
+            "mode": core["mode"],
+            "orientation": "growth-directed",
+        },
+        "meta": {
+            "api": "PHB Universal API",
+            "version": "v1",
+        },
+        "core": core,
+    }
