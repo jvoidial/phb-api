@@ -1,0 +1,6 @@
+{
+  "id": "temple_kedarnath_india",
+  "meta": { "name": "Kedarnath Temple", "culture": "Indian", "era": "Medieval" },
+  "coords": { "lat": 30.7352, "lon": 79.0669, "elev_m": 3583 },
+  "coherence": { "geo": 0.82, "orient": 0.73, "material": 0.76, "acoustic": 0.74, "global_index": 0.76 }
+}

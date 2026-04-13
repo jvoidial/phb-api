@@ -1,0 +1,7 @@
+{
+  "id": "practice_meditation",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Meditation", "tags": ["calm","awareness"] },
+  "coords": { "curiosity": 0.60, "focus": 0.80, "openness": 0.85, "rigor": 0.60, "creativity": 0.70 },
+  "coherence": { "clarity": 0.88, "depth": 0.86, "integration": 0.87, "global_index": 0.87 }
+}

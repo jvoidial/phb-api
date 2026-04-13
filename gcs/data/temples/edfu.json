@@ -1,0 +1,6 @@
+{
+  "id": "temple_edfu_egypt",
+  "meta": { "name": "Temple of Edfu", "culture": "Egyptian", "era": "Ptolemaic" },
+  "coords": { "lat": 24.9770, "lon": 32.8740, "elev_m": 90 },
+  "coherence": { "geo": 0.88, "orient": 0.79, "material": 0.72, "acoustic": 0.81, "global_index": 0.80 }
+}

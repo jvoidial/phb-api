@@ -1,0 +1,6 @@
+{
+  "id": "pyramid_red_dahshur_egypt",
+  "meta": { "name": "Red Pyramid (Dahshur)", "culture": "Egyptian", "era": "Old Kingdom" },
+  "coords": { "lat": 29.8083, "lon": 31.2050, "elev_m": 75 },
+  "coherence": { "geo": 0.89, "orient": 0.81, "material": 0.73, "acoustic": 0.80, "global_index": 0.81 }
+}

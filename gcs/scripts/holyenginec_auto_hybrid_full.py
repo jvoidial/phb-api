@@ -1,0 +1,52 @@
+import numpy as np
+import os
+
+# Parameters
+DT = 0.01
+K_RESONANCE = 2.0
+TIME_STEPS = 100000
+STATE_FILE = os.path.expanduser("~/gcs/data/voxel_state.npy")
+
+# Load or init voxel grid
+if os.path.exists(STATE_FILE):
+    phi = np.load(STATE_FILE)
+else:
+    phi = np.random.uniform(-0.1, 0.1, (128, 128))
+
+def evolve(phi):
+    laplacian = (-4*phi
+                 + np.roll(phi, 1, axis=0)
+                 + np.roll(phi, -1, axis=0)
+                 + np.roll(phi, 1, axis=1)
+                 + np.roll(phi, -1, axis=1))
+    phi_new = phi + DT * (K_RESONANCE**2 * phi + laplacian)
+    phi_new = np.clip(phi_new, -1.0, 1.0)
+    return phi_new
+
+def veil_observation(phi):
+    return np.copy(phi)  # simple placeholder for observation
+
+def adaptive_feedback(phi, psi):
+    diff = psi - phi
+    gain = np.clip(np.mean(diff), -0.05, 0.05)
+    return gain
+
+def cat_eof_feedback(phi, psi, gain):
+    phi += gain * (psi - phi)
+    phi = np.clip(phi, -1.0, 1.0)
+    phi /= max(1e-6, np.std(phi))
+    return phi
+
+step_counter = 0
+for step in range(TIME_STEPS):
+    phi = evolve(phi)
+    psi = veil_observation(phi)
+    gain = adaptive_feedback(phi, psi)
+    phi = cat_eof_feedback(phi, psi, gain)
+    step_counter += 1
+    if step_counter % 50 == 0:
+        mean_energy = np.mean(phi**2)
+        print(f"[PHB] Step {step_counter}, mean energy: {mean_energy:.6f}", flush=True)
+    if step_counter % 500 == 0:
+        np.save(STATE_FILE, phi)  # persist voxel state
+

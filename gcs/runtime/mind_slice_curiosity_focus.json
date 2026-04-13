@@ -1,0 +1,265 @@
+{
+  "axes": [
+    "curiosity",
+    "focus"
+  ],
+  "fixed": {
+    "openness": 0.8,
+    "rigor": 0.8,
+    "creativity": 0.8
+  },
+  "points": [
+    {
+      "curiosity": 0.0,
+      "focus": 0.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.0,
+      "focus": 0.2,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.0,
+      "focus": 0.4,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.0,
+      "focus": 0.6,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.0,
+      "focus": 0.8,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.0,
+      "focus": 1.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.2,
+      "focus": 0.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.2,
+      "focus": 0.2,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.2,
+      "focus": 0.4,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.2,
+      "focus": 0.6,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.2,
+      "focus": 0.8,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.2,
+      "focus": 1.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.4,
+      "focus": 0.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.4,
+      "focus": 0.2,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.4,
+      "focus": 0.4,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.4,
+      "focus": 0.6,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.4,
+      "focus": 0.8,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.4,
+      "focus": 1.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.6,
+      "focus": 0.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.6,
+      "focus": 0.2,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.6,
+      "focus": 0.4,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.6,
+      "focus": 0.6,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.6,
+      "focus": 0.8,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.6,
+      "focus": 1.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.8,
+      "focus": 0.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.8,
+      "focus": 0.2,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.8,
+      "focus": 0.4,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.8,
+      "focus": 0.6,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.8,
+      "focus": 0.8,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 0.8,
+      "focus": 1.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 1.0,
+      "focus": 0.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 1.0,
+      "focus": 0.2,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 1.0,
+      "focus": 0.4,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 1.0,
+      "focus": 0.6,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 1.0,
+      "focus": 0.8,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    },
+    {
+      "curiosity": 1.0,
+      "focus": 1.0,
+      "coherence": 1.0,
+      "knowledge_influence": 1.0,
+      "practice_influence": 1.0
+    }
+  ]
+}

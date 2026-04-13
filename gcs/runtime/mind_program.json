@@ -1,0 +1,58 @@
+{
+  "engine": "PHB MIND-STATE COMPILER v2",
+  "state_signature": "C0.8-F0.8-O0.8-R0.8-Cr0.8",
+  "best_state": {
+    "curiosity": 0.8,
+    "focus": 0.8,
+    "openness": 0.8,
+    "rigor": 0.8,
+    "creativity": 0.8
+  },
+  "recommended_practices": [
+    "Teaching Others",
+    "Prototyping",
+    "Reflective Journaling",
+    "Dialogue & Teaching",
+    "Collaboration"
+  ],
+  "program": [
+    {
+      "phase": "Activation",
+      "focus": "Ignite curiosity + openness",
+      "actions": [
+        "Engage in Teaching Others (if available)",
+        "Generate 3 exploratory questions about the current problem",
+        "List 2 surprising or non-obvious angles"
+      ]
+    },
+    {
+      "phase": "Stabilization",
+      "focus": "Increase focus + rigor",
+      "actions": [
+        "Define the problem in one precise sentence",
+        "List constraints, assumptions, and success criteria",
+        "Break the task into 3\u20135 atomic steps"
+      ]
+    },
+    {
+      "phase": "Expansion",
+      "focus": "Boost creativity",
+      "actions": [
+        "Prototype or sketch using Prototyping (if relevant)",
+        "Produce 5 variations or alternative solutions",
+        "Combine two unrelated ideas into a new approach"
+      ]
+    },
+    {
+      "phase": "Integration",
+      "focus": "Merge knowledge + practice",
+      "actions": [
+        "Teach or explain using Teaching Others or Reflective Journaling",
+        "Write a structured summary of what you learned",
+        "Apply the idea to one concrete real-world example"
+      ]
+    }
+  ],
+  "human_routine": "PHB Mind Program \u2013 State C0.8-F0.8-O0.8-R0.8-Cr0.8\n\nPhase 1: Activation \u2013 Ignite curiosity + openness\n  1.1 Engage in Teaching Others (if available)\n  1.2 Generate 3 exploratory questions about the current problem\n  1.3 List 2 surprising or non-obvious angles\n\nPhase 2: Stabilization \u2013 Increase focus + rigor\n  2.1 Define the problem in one precise sentence\n  2.2 List constraints, assumptions, and success criteria\n  2.3 Break the task into 3\u20135 atomic steps\n\nPhase 3: Expansion \u2013 Boost creativity\n  3.1 Prototype or sketch using Prototyping (if relevant)\n  3.2 Produce 5 variations or alternative solutions\n  3.3 Combine two unrelated ideas into a new approach\n\nPhase 4: Integration \u2013 Merge knowledge + practice\n  4.1 Teach or explain using Teaching Others or Reflective Journaling\n  4.2 Write a structured summary of what you learned\n  4.3 Apply the idea to one concrete real-world example\n",
+  "dsl_program": "STATE C0.8-F0.8-O0.8-R0.8-Cr0.8\nPHASE Activation USE curiosity,openness\n  ACT generate_questions count=3\n  ACT list_surprises count=2\nPHASE Stabilization USE focus,rigor\n  ACT define_problem\n  ACT list_constraints\n  ACT break_down steps=3-5\nPHASE Expansion USE creativity\n  ACT prototype\n  ACT generate_variations count=5\n  ACT combine_concepts\nPHASE Integration USE knowledge,practice\n  ACT teach_or_explain\n  ACT write_summary\n  ACT apply_example"
+}

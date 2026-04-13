@@ -1,0 +1,6 @@
+{
+  "id": "temple_rameswaram_india",
+  "meta": { "name": "Ramanathaswamy Temple", "culture": "Indian", "era": "Pandya" },
+  "coords": { "lat": 9.2881, "lon": 79.3129, "elev_m": 10 },
+  "coherence": { "geo": 0.85, "orient": 0.77, "material": 0.66, "acoustic": 0.82, "global_index": 0.78 }
+}

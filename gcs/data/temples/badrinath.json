@@ -1,0 +1,6 @@
+{
+  "id": "temple_badrinath_india",
+  "meta": { "name": "Badrinath Temple", "culture": "Indian", "era": "Vedic" },
+  "coords": { "lat": 30.7433, "lon": 79.4930, "elev_m": 3133 },
+  "coherence": { "geo": 0.81, "orient": 0.72, "material": 0.74, "acoustic": 0.73, "global_index": 0.75 }
+}

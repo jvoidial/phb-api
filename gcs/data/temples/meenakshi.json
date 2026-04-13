@@ -1,0 +1,6 @@
+{
+  "id": "temple_meenakshi_india",
+  "meta": { "name": "Meenakshi Amman Temple", "culture": "Indian", "era": "Pandya" },
+  "coords": { "lat": 9.9195, "lon": 78.1193, "elev_m": 141 },
+  "coherence": { "geo": 0.86, "orient": 0.77, "material": 0.69, "acoustic": 0.83, "global_index": 0.79 }
+}

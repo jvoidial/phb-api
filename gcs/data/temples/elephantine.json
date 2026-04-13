@@ -1,0 +1,6 @@
+{
+  "id": "temple_khnum_elephantine_egypt",
+  "meta": { "name": "Temple of Khnum (Elephantine)", "culture": "Egyptian", "era": "Ptolemaic" },
+  "coords": { "lat": 24.0880, "lon": 32.8870, "elev_m": 190 },
+  "coherence": { "geo": 0.84, "orient": 0.76, "material": 0.69, "acoustic": 0.79, "global_index": 0.77 }
+}

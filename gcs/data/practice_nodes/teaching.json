@@ -1,0 +1,7 @@
+{
+  "id": "practice_teaching",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Teaching Others", "tags": ["explanation","clarity"] },
+  "coords": { "curiosity": 0.85, "focus": 0.80, "openness": 0.85, "rigor": 0.80, "creativity": 0.75 },
+  "coherence": { "clarity": 0.90, "depth": 0.88, "integration": 0.89, "global_index": 0.90 }
+}

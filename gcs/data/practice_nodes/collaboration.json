@@ -1,0 +1,7 @@
+{
+  "id": "practice_collaboration",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Collaboration", "tags": ["teamwork","dialogue"] },
+  "coords": { "curiosity": 0.85, "focus": 0.75, "openness": 0.90, "rigor": 0.70, "creativity": 0.80 },
+  "coherence": { "clarity": 0.86, "depth": 0.84, "integration": 0.86, "global_index": 0.86 }
+}

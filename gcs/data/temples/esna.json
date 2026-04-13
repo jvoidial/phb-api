@@ -1,0 +1,6 @@
+{
+  "id": "temple_esna_egypt",
+  "meta": { "name": "Temple of Esna", "culture": "Egyptian", "era": "Ptolemaic" },
+  "coords": { "lat": 25.2930, "lon": 32.5540, "elev_m": 80 },
+  "coherence": { "geo": 0.85, "orient": 0.77, "material": 0.70, "acoustic": 0.79, "global_index": 0.78 }
+}

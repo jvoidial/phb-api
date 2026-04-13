@@ -1,0 +1,6 @@
+{
+  "id": "temple_dwarkadhish_india",
+  "meta": { "name": "Dwarkadhish Temple", "culture": "Indian", "era": "Medieval" },
+  "coords": { "lat": 22.2375, "lon": 68.9678, "elev_m": 14 },
+  "coherence": { "geo": 0.84, "orient": 0.76, "material": 0.69, "acoustic": 0.78, "global_index": 0.77 }
+}

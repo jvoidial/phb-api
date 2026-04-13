@@ -1,0 +1,7 @@
+{
+  "id": "node_ethics_values",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Ethics & Values", "tags": ["norms","responsibility","choice"] },
+  "coords": { "curiosity": 0.75, "focus": 0.75, "openness": 0.85, "rigor": 0.80, "creativity": 0.65 },
+  "coherence": { "clarity": 0.88, "depth": 0.87, "integration": 0.88, "global_index": 0.89 }
+}

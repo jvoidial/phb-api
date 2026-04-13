@@ -1,0 +1,6 @@
+{
+  "id": "pyramid_step_saqqara_egypt",
+  "meta": { "name": "Step Pyramid of Djoser (Saqqara)", "culture": "Egyptian", "era": "Old Kingdom" },
+  "coords": { "lat": 29.8713, "lon": 31.2165, "elev_m": 70 },
+  "coherence": { "geo": 0.90, "orient": 0.82, "material": 0.73, "acoustic": 0.80, "global_index": 0.82 }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "temple_lingaraja_india",
+  "meta": { "name": "Lingaraja Temple", "culture": "Indian", "era": "Kalinga" },
+  "coords": { "lat": 20.2386, "lon": 85.8334, "elev_m": 45 },
+  "coherence": { "geo": 0.85, "orient": 0.77, "material": 0.71, "acoustic": 0.79, "global_index": 0.78 }
+}

@@ -1,0 +1,135 @@
+{
+  "current": {
+    "curiosity": 0.4,
+    "focus": 0.4,
+    "openness": 0.6,
+    "rigor": 0.4,
+    "creativity": 0.6
+  },
+  "best": {
+    "curiosity": 0.8,
+    "focus": 0.8,
+    "openness": 0.8,
+    "rigor": 0.8,
+    "creativity": 0.8
+  },
+  "target": {
+    "curiosity": 0.9,
+    "focus": 0.85,
+    "openness": 0.85,
+    "rigor": 0.85,
+    "creativity": 0.9
+  },
+  "path": [
+    {
+      "step": 1,
+      "coords": {
+        "curiosity": 0.44,
+        "focus": 0.44,
+        "openness": 0.62,
+        "rigor": 0.44,
+        "creativity": 0.62
+      },
+      "dist_to_target": 0.3685376507224194
+    },
+    {
+      "step": 2,
+      "coords": {
+        "curiosity": 0.48,
+        "focus": 0.48,
+        "openness": 0.64,
+        "rigor": 0.48,
+        "creativity": 0.64
+      },
+      "dist_to_target": 0.3352312634585265
+    },
+    {
+      "step": 3,
+      "coords": {
+        "curiosity": 0.52,
+        "focus": 0.52,
+        "openness": 0.66,
+        "rigor": 0.52,
+        "creativity": 0.66
+      },
+      "dist_to_target": 0.3019602622862816
+    },
+    {
+      "step": 4,
+      "coords": {
+        "curiosity": 0.56,
+        "focus": 0.56,
+        "openness": 0.68,
+        "rigor": 0.56,
+        "creativity": 0.68
+      },
+      "dist_to_target": 0.2687377904203277
+    },
+    {
+      "step": 5,
+      "coords": {
+        "curiosity": 0.6,
+        "focus": 0.6,
+        "openness": 0.7,
+        "rigor": 0.6,
+        "creativity": 0.7
+      },
+      "dist_to_target": 0.23558437978779495
+    },
+    {
+      "step": 6,
+      "coords": {
+        "curiosity": 0.64,
+        "focus": 0.64,
+        "openness": 0.72,
+        "rigor": 0.64,
+        "creativity": 0.72
+      },
+      "dist_to_target": 0.2025339477717254
+    },
+    {
+      "step": 7,
+      "coords": {
+        "curiosity": 0.68,
+        "focus": 0.68,
+        "openness": 0.74,
+        "rigor": 0.68,
+        "creativity": 0.74
+      },
+      "dist_to_target": 0.169646691685986
+    },
+    {
+      "step": 8,
+      "coords": {
+        "curiosity": 0.72,
+        "focus": 0.72,
+        "openness": 0.76,
+        "rigor": 0.72,
+        "creativity": 0.76
+      },
+      "dist_to_target": 0.1370401401050072
+    },
+    {
+      "step": 9,
+      "coords": {
+        "curiosity": 0.76,
+        "focus": 0.76,
+        "openness": 0.78,
+        "rigor": 0.76,
+        "creativity": 0.78
+      },
+      "dist_to_target": 0.10497618777608567
+    },
+    {
+      "step": 10,
+      "coords": {
+        "curiosity": 0.8,
+        "focus": 0.8,
+        "openness": 0.8,
+        "rigor": 0.8,
+        "creativity": 0.8
+      },
+      "dist_to_target": 0.07416198487095658
+    }
+  ]
+}

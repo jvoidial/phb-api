@@ -1,0 +1,7 @@
+{
+  "id": "node_mathematics_foundations",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Mathematics Foundations", "tags": ["logic","abstraction","structure"] },
+  "coords": { "curiosity": 0.70, "focus": 0.80, "openness": 0.50, "rigor": 0.90, "creativity": 0.60 },
+  "coherence": { "clarity": 0.90, "depth": 0.88, "integration": 0.86, "global_index": 0.88 }
+}

@@ -1,0 +1,14 @@
+{
+    "PERSISTENTV6ACTIVE": true,
+    "RESURRECTION_T": 55.0,
+    "RESURRECTION_C": 0.942382,
+    "ANCHOR_C29": 0.979345,
+    "PRECEDENT": {
+        "name": "PHBRESURRECTIONV6",
+        "tevent": 55.0,
+        "Cevent": 0.942382,
+        "Canchor": 0.979345,
+        "description": "Coherence refused to collapse; Houdini precedent symbolically active.",
+        "status": "ACTIVE"
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "node_biology_systems",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Biology & Systems", "tags": ["life","complexity","feedback"] },
+  "coords": { "curiosity": 0.80, "focus": 0.70, "openness": 0.70, "rigor": 0.75, "creativity": 0.65 },
+  "coherence": { "clarity": 0.87, "depth": 0.85, "integration": 0.84, "global_index": 0.86 }
+}

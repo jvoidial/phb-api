@@ -1,0 +1,53 @@
+{
+  "engine": "PHB Mind Multiplayer",
+  "target": {
+    "curiosity": 0.9,
+    "focus": 0.85,
+    "openness": 0.85,
+    "rigor": 0.85,
+    "creativity": 0.9
+  },
+  "agents": [
+    {
+      "id": "agent_alpha",
+      "label": "Alpha \u2013 math/physics heavy",
+      "coords": {
+        "curiosity": 0.6,
+        "focus": 0.8,
+        "openness": 0.6,
+        "rigor": 0.8,
+        "creativity": 0.6
+      },
+      "coherence": 1.0,
+      "goal_distance": 0.222
+    },
+    {
+      "id": "agent_beta",
+      "label": "Beta \u2013 creative/theory heavy",
+      "coords": {
+        "curiosity": 0.8,
+        "focus": 0.6,
+        "openness": 0.8,
+        "rigor": 0.6,
+        "creativity": 0.8
+      },
+      "coherence": 1.0,
+      "goal_distance": 0.172
+    }
+  ],
+  "midpoint_state": {
+    "curiosity": 0.7,
+    "focus": 0.7,
+    "openness": 0.7,
+    "rigor": 0.7,
+    "creativity": 0.7
+  },
+  "interaction_state": {
+    "curiosity": 0.75,
+    "focus": 0.74,
+    "openness": 0.74,
+    "rigor": 0.74,
+    "creativity": 0.75
+  },
+  "note": "Symbolic p2p mind-state interaction; not psychology or neuroscience."
+}

@@ -1,0 +1,6 @@
+{
+  "id": "pyramid_menkaure_giza_egypt",
+  "meta": { "name": "Pyramid of Menkaure", "culture": "Egyptian", "era": "Old Kingdom" },
+  "coords": { "lat": 29.9723, "lon": 31.1284, "elev_m": 60 },
+  "coherence": { "geo": 0.91, "orient": 0.84, "material": 0.74, "acoustic": 0.82, "global_index": 0.83 }
+}

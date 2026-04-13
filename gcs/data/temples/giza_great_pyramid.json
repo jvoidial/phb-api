@@ -1,0 +1,6 @@
+{
+  "id": "pyramid_great_giza_egypt",
+  "meta": { "name": "Great Pyramid of Giza", "culture": "Egyptian", "era": "Old Kingdom" },
+  "coords": { "lat": 29.9792, "lon": 31.1342, "elev_m": 60 },
+  "coherence": { "geo": 0.95, "orient": 0.88, "material": 0.76, "acoustic": 0.84, "global_index": 0.87 }
+}

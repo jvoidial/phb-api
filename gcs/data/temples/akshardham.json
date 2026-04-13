@@ -1,0 +1,6 @@
+{
+  "id": "temple_akshardham_india",
+  "meta": { "name": "Akshardham (Delhi)", "culture": "Indian", "era": "Modern" },
+  "coords": { "lat": 28.6127, "lon": 77.2773, "elev_m": 214 },
+  "coherence": { "geo": 0.87, "orient": 0.75, "material": 0.70, "acoustic": 0.80, "global_index": 0.78 }
+}

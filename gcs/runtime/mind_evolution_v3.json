@@ -1,0 +1,715 @@
+{
+  "engine": "PHB MIND EVOLUTION v3",
+  "axes": [
+    "curiosity",
+    "focus",
+    "openness",
+    "rigor",
+    "creativity"
+  ],
+  "target": {
+    "curiosity": 0.9,
+    "focus": 0.85,
+    "openness": 0.85,
+    "rigor": 0.85,
+    "creativity": 0.9
+  },
+  "start": {
+    "curiosity": 0.8900000000000003,
+    "focus": 1.0,
+    "openness": 1.0,
+    "rigor": 1.0,
+    "creativity": 1.0
+  },
+  "end": {
+    "curiosity": 0.8996124046891549,
+    "focus": 0.855813929662677,
+    "openness": 0.855813929662677,
+    "rigor": 0.855813929662677,
+    "creativity": 0.9038759531084515
+  },
+  "timeline": [
+    {
+      "t": 0,
+      "coords": {
+        "curiosity": 0.892,
+        "focus": 0.978,
+        "openness": 0.978,
+        "rigor": 0.978,
+        "creativity": 0.985
+      },
+      "dist_to_target": 0.106,
+      "coherence": 0.894,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 1,
+      "coords": {
+        "curiosity": 0.893,
+        "focus": 0.958,
+        "openness": 0.958,
+        "rigor": 0.958,
+        "creativity": 0.972
+      },
+      "dist_to_target": 0.09,
+      "coherence": 0.91,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 2,
+      "coords": {
+        "curiosity": 0.894,
+        "focus": 0.942,
+        "openness": 0.942,
+        "rigor": 0.942,
+        "creativity": 0.961
+      },
+      "dist_to_target": 0.077,
+      "coherence": 0.923,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 3,
+      "coords": {
+        "curiosity": 0.895,
+        "focus": 0.928,
+        "openness": 0.928,
+        "rigor": 0.928,
+        "creativity": 0.952
+      },
+      "dist_to_target": 0.065,
+      "coherence": 0.935,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 4,
+      "coords": {
+        "curiosity": 0.896,
+        "focus": 0.917,
+        "openness": 0.917,
+        "rigor": 0.917,
+        "creativity": 0.944
+      },
+      "dist_to_target": 0.055,
+      "coherence": 0.945,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 5,
+      "coords": {
+        "curiosity": 0.896,
+        "focus": 0.907,
+        "openness": 0.907,
+        "rigor": 0.907,
+        "creativity": 0.938
+      },
+      "dist_to_target": 0.047,
+      "coherence": 0.953,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 6,
+      "coords": {
+        "curiosity": 0.897,
+        "focus": 0.898,
+        "openness": 0.898,
+        "rigor": 0.898,
+        "creativity": 0.932
+      },
+      "dist_to_target": 0.04,
+      "coherence": 0.96,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 7,
+      "coords": {
+        "curiosity": 0.897,
+        "focus": 0.891,
+        "openness": 0.891,
+        "rigor": 0.891,
+        "creativity": 0.927
+      },
+      "dist_to_target": 0.034,
+      "coherence": 0.966,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 8,
+      "coords": {
+        "curiosity": 0.898,
+        "focus": 0.885,
+        "openness": 0.885,
+        "rigor": 0.885,
+        "creativity": 0.923
+      },
+      "dist_to_target": 0.029,
+      "coherence": 0.971,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 9,
+      "coords": {
+        "curiosity": 0.898,
+        "focus": 0.88,
+        "openness": 0.88,
+        "rigor": 0.88,
+        "creativity": 0.92
+      },
+      "dist_to_target": 0.025,
+      "coherence": 0.975,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 10,
+      "coords": {
+        "curiosity": 0.898,
+        "focus": 0.875,
+        "openness": 0.875,
+        "rigor": 0.875,
+        "creativity": 0.917
+      },
+      "dist_to_target": 0.021,
+      "coherence": 0.979,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 11,
+      "coords": {
+        "curiosity": 0.899,
+        "focus": 0.871,
+        "openness": 0.871,
+        "rigor": 0.871,
+        "creativity": 0.914
+      },
+      "dist_to_target": 0.018,
+      "coherence": 0.982,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 12,
+      "coords": {
+        "curiosity": 0.899,
+        "focus": 0.868,
+        "openness": 0.868,
+        "rigor": 0.868,
+        "creativity": 0.912
+      },
+      "dist_to_target": 0.015,
+      "coherence": 0.985,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 13,
+      "coords": {
+        "curiosity": 0.899,
+        "focus": 0.865,
+        "openness": 0.865,
+        "rigor": 0.865,
+        "creativity": 0.91
+      },
+      "dist_to_target": 0.013,
+      "coherence": 0.987,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 14,
+      "coords": {
+        "curiosity": 0.899,
+        "focus": 0.863,
+        "openness": 0.863,
+        "rigor": 0.863,
+        "creativity": 0.909
+      },
+      "dist_to_target": 0.011,
+      "coherence": 0.989,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 15,
+      "coords": {
+        "curiosity": 0.899,
+        "focus": 0.861,
+        "openness": 0.861,
+        "rigor": 0.861,
+        "creativity": 0.907
+      },
+      "dist_to_target": 0.009,
+      "coherence": 0.991,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 16,
+      "coords": {
+        "curiosity": 0.899,
+        "focus": 0.859,
+        "openness": 0.859,
+        "rigor": 0.859,
+        "creativity": 0.906
+      },
+      "dist_to_target": 0.008,
+      "coherence": 0.992,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 17,
+      "coords": {
+        "curiosity": 0.899,
+        "focus": 0.858,
+        "openness": 0.858,
+        "rigor": 0.858,
+        "creativity": 0.905
+      },
+      "dist_to_target": 0.007,
+      "coherence": 0.993,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 18,
+      "coords": {
+        "curiosity": 0.9,
+        "focus": 0.857,
+        "openness": 0.857,
+        "rigor": 0.857,
+        "creativity": 0.905
+      },
+      "dist_to_target": 0.006,
+      "coherence": 0.994,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    },
+    {
+      "t": 19,
+      "coords": {
+        "curiosity": 0.9,
+        "focus": 0.856,
+        "openness": 0.856,
+        "rigor": 0.856,
+        "creativity": 0.904
+      },
+      "dist_to_target": 0.005,
+      "coherence": 0.995,
+      "energy": {
+        "stability": 0.97,
+        "volatility": 0.03
+      }
+    }
+  ],
+  "agents": [
+    {
+      "id": "agent_alpha",
+      "label": "Alpha \u2013 math/physics heavy",
+      "start": {
+        "curiosity": 0.7,
+        "focus": 0.8,
+        "openness": 0.65,
+        "rigor": 0.85,
+        "creativity": 0.6
+      },
+      "end": {
+        "curiosity": 0.8606251191318555,
+        "focus": 0.8401562797829639,
+        "openness": 0.8106251191318554,
+        "rigor": 0.85,
+        "creativity": 0.8409376786977831
+      },
+      "timeline": [
+        {
+          "t": 0,
+          "coords": {
+            "curiosity": 0.73,
+            "focus": 0.807,
+            "openness": 0.68,
+            "rigor": 0.85,
+            "creativity": 0.645
+          },
+          "dist_to_target": 0.158,
+          "coherence": 0.842,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 1,
+          "coords": {
+            "curiosity": 0.755,
+            "focus": 0.814,
+            "openness": 0.706,
+            "rigor": 0.85,
+            "creativity": 0.683
+          },
+          "dist_to_target": 0.134,
+          "coherence": 0.866,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 2,
+          "coords": {
+            "curiosity": 0.777,
+            "focus": 0.819,
+            "openness": 0.727,
+            "rigor": 0.85,
+            "creativity": 0.716
+          },
+          "dist_to_target": 0.114,
+          "coherence": 0.886,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 3,
+          "coords": {
+            "curiosity": 0.796,
+            "focus": 0.824,
+            "openness": 0.746,
+            "rigor": 0.85,
+            "creativity": 0.743
+          },
+          "dist_to_target": 0.097,
+          "coherence": 0.903,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 4,
+          "coords": {
+            "curiosity": 0.811,
+            "focus": 0.828,
+            "openness": 0.761,
+            "rigor": 0.85,
+            "creativity": 0.767
+          },
+          "dist_to_target": 0.082,
+          "coherence": 0.918,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 5,
+          "coords": {
+            "curiosity": 0.825,
+            "focus": 0.831,
+            "openness": 0.775,
+            "rigor": 0.85,
+            "creativity": 0.787
+          },
+          "dist_to_target": 0.07,
+          "coherence": 0.93,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 6,
+          "coords": {
+            "curiosity": 0.836,
+            "focus": 0.834,
+            "openness": 0.786,
+            "rigor": 0.85,
+            "creativity": 0.804
+          },
+          "dist_to_target": 0.06,
+          "coherence": 0.94,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 7,
+          "coords": {
+            "curiosity": 0.846,
+            "focus": 0.836,
+            "openness": 0.796,
+            "rigor": 0.85,
+            "creativity": 0.818
+          },
+          "dist_to_target": 0.051,
+          "coherence": 0.949,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 8,
+          "coords": {
+            "curiosity": 0.854,
+            "focus": 0.838,
+            "openness": 0.804,
+            "rigor": 0.85,
+            "creativity": 0.831
+          },
+          "dist_to_target": 0.043,
+          "coherence": 0.957,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 9,
+          "coords": {
+            "curiosity": 0.861,
+            "focus": 0.84,
+            "openness": 0.811,
+            "rigor": 0.85,
+            "creativity": 0.841
+          },
+          "dist_to_target": 0.037,
+          "coherence": 0.963,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        }
+      ]
+    },
+    {
+      "id": "agent_beta",
+      "label": "Beta \u2013 creative/theory heavy",
+      "start": {
+        "curiosity": 0.85,
+        "focus": 0.65,
+        "openness": 0.9,
+        "rigor": 0.6,
+        "creativity": 0.9
+      },
+      "end": {
+        "curiosity": 0.890156279782964,
+        "focus": 0.8106251191318554,
+        "openness": 0.859843720217036,
+        "rigor": 0.8007813989148193,
+        "creativity": 0.9
+      },
+      "timeline": [
+        {
+          "t": 0,
+          "coords": {
+            "curiosity": 0.857,
+            "focus": 0.68,
+            "openness": 0.893,
+            "rigor": 0.637,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.125,
+          "coherence": 0.875,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 1,
+          "coords": {
+            "curiosity": 0.864,
+            "focus": 0.706,
+            "openness": 0.886,
+            "rigor": 0.669,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.106,
+          "coherence": 0.894,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 2,
+          "coords": {
+            "curiosity": 0.869,
+            "focus": 0.727,
+            "openness": 0.881,
+            "rigor": 0.696,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.09,
+          "coherence": 0.91,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 3,
+          "coords": {
+            "curiosity": 0.874,
+            "focus": 0.746,
+            "openness": 0.876,
+            "rigor": 0.719,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.077,
+          "coherence": 0.923,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 4,
+          "coords": {
+            "curiosity": 0.878,
+            "focus": 0.761,
+            "openness": 0.872,
+            "rigor": 0.739,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.065,
+          "coherence": 0.935,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 5,
+          "coords": {
+            "curiosity": 0.881,
+            "focus": 0.775,
+            "openness": 0.869,
+            "rigor": 0.756,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.055,
+          "coherence": 0.945,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 6,
+          "coords": {
+            "curiosity": 0.884,
+            "focus": 0.786,
+            "openness": 0.866,
+            "rigor": 0.77,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.047,
+          "coherence": 0.953,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 7,
+          "coords": {
+            "curiosity": 0.886,
+            "focus": 0.796,
+            "openness": 0.864,
+            "rigor": 0.782,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.04,
+          "coherence": 0.96,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 8,
+          "coords": {
+            "curiosity": 0.888,
+            "focus": 0.804,
+            "openness": 0.862,
+            "rigor": 0.792,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.034,
+          "coherence": 0.966,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        },
+        {
+          "t": 9,
+          "coords": {
+            "curiosity": 0.89,
+            "focus": 0.811,
+            "openness": 0.86,
+            "rigor": 0.801,
+            "creativity": 0.9
+          },
+          "dist_to_target": 0.029,
+          "coherence": 0.971,
+          "energy": {
+            "stability": 0.97,
+            "volatility": 0.03
+          }
+        }
+      ]
+    }
+  ]
+}

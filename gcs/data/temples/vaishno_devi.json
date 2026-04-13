@@ -1,0 +1,6 @@
+{
+  "id": "temple_vaishno_devi_india",
+  "meta": { "name": "Vaishno Devi Temple", "culture": "Indian", "era": "Medieval" },
+  "coords": { "lat": 33.0300, "lon": 74.9490, "elev_m": 1580 },
+  "coherence": { "geo": 0.80, "orient": 0.73, "material": 0.72, "acoustic": 0.76, "global_index": 0.75 }
+}

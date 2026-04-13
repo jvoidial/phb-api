@@ -1,0 +1,7 @@
+{
+  "id": "practice_coding",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Coding Practice", "tags": ["problem-solving","systems"] },
+  "coords": { "curiosity": 0.75, "focus": 0.85, "openness": 0.60, "rigor": 0.85, "creativity": 0.70 },
+  "coherence": { "clarity": 0.89, "depth": 0.87, "integration": 0.86, "global_index": 0.88 }
+}

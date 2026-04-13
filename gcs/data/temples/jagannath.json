@@ -1,0 +1,6 @@
+{
+  "id": "temple_jagannath_india",
+  "meta": { "name": "Jagannath Temple", "culture": "Indian", "era": "Eastern Ganga" },
+  "coords": { "lat": 19.8049, "lon": 85.8189, "elev_m": 12 },
+  "coherence": { "geo": 0.84, "orient": 0.76, "material": 0.67, "acoustic": 0.79, "global_index": 0.77 }
+}

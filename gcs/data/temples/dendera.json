@@ -1,0 +1,6 @@
+{
+  "id": "temple_dendera_egypt",
+  "meta": { "name": "Temple of Dendera", "culture": "Egyptian", "era": "Ptolemaic" },
+  "coords": { "lat": 26.1375, "lon": 32.6697, "elev_m": 76 },
+  "coherence": { "geo": 0.87, "orient": 0.78, "material": 0.71, "acoustic": 0.81, "global_index": 0.80 }
+}

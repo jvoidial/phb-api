@@ -1,0 +1,6 @@
+{
+  "id": "temple_somnath_india",
+  "meta": { "name": "Somnath Temple", "culture": "Indian", "era": "Chalukya" },
+  "coords": { "lat": 20.8880, "lon": 70.4012, "elev_m": 12 },
+  "coherence": { "geo": 0.83, "orient": 0.78, "material": 0.71, "acoustic": 0.75, "global_index": 0.77 }
+}

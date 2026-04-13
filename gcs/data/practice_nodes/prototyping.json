@@ -1,0 +1,7 @@
+{
+  "id": "practice_prototyping",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Prototyping", "tags": ["making","iteration"] },
+  "coords": { "curiosity": 0.85, "focus": 0.80, "openness": 0.75, "rigor": 0.80, "creativity": 0.85 },
+  "coherence": { "clarity": 0.87, "depth": 0.85, "integration": 0.86, "global_index": 0.87 }
+}

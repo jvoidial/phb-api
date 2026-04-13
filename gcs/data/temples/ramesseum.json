@@ -1,0 +1,6 @@
+{
+  "id": "temple_ramesseum_egypt",
+  "meta": { "name": "Ramesseum", "culture": "Egyptian", "era": "New Kingdom" },
+  "coords": { "lat": 25.7280, "lon": 32.6100, "elev_m": 80 },
+  "coherence": { "geo": 0.86, "orient": 0.78, "material": 0.71, "acoustic": 0.80, "global_index": 0.79 }
+}

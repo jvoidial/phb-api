@@ -1,0 +1,6 @@
+{
+  "id": "temple_konark_india",
+  "meta": { "name": "Konark Sun Temple", "culture": "Indian", "era": "Eastern Ganga" },
+  "coords": { "lat": 19.8876, "lon": 86.0945, "elev_m": 2 },
+  "coherence": { "geo": 0.89, "orient": 0.82, "material": 0.68, "acoustic": 0.77, "global_index": 0.79 }
+}

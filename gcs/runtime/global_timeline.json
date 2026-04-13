@@ -1,0 +1,58 @@
+{
+  "engine": "PHB VORTEX GLOBAL TIMELINE",
+  "created": "2026-04-13T14:15:01.012646+00:00",
+  "snapshots": [
+    {
+      "timestamp": "2026-04-13T14:15:01.012671+00:00",
+      "veil_field": {
+        "engine": "PHB VORTEX GLOBAL VEIL FIELD",
+        "timestamp": "2026-04-13T14:12:51.926017+00:00",
+        "agent_count": 1,
+        "energy_summary": {
+          "mean_coherence": 1.0,
+          "mean_goal_distance": 0.222,
+          "mean_stability": 0.778,
+          "mean_volatility": 0.0
+        },
+        "agents": [
+          {
+            "engine": "PHB VORTEX NODE PACKET",
+            "timestamp": "2026-04-13T14:11:49.946961+00:00",
+            "node_id": "node_localhost",
+            "agent_id": "agent_alpha",
+            "label": "Alpha \u2013 math/physics heavy",
+            "coords": {
+              "curiosity": 0.6,
+              "focus": 0.8,
+              "openness": 0.6,
+              "rigor": 0.8,
+              "creativity": 0.6
+            },
+            "coherence": 1.0,
+            "goal_distance": 0.222,
+            "energy": {
+              "stability": 0.778,
+              "volatility": 0.0
+            },
+            "voxel_index": {
+              "curiosity": 3,
+              "focus": 4,
+              "openness": 3,
+              "rigor": 4,
+              "creativity": 3
+            },
+            "source_manifest": "phb_vortex_sync_v2.json",
+            "integrity": {
+              "unified_state_sha256": "65829b84fa8b3a5a73bee5790f64fa078953a9f37b19c80e106cc6abf4188af4",
+              "personal_transition_sha256": "47147043ad7ae44cfee62c7f3914a66059ec1cd4987b5d88817c6da3633e642b",
+              "multiplayer_sha256": "a00eecaf0b798c3520cfa138e48ff7cced92cc3bb384580b3b3a04507164e083"
+            },
+            "note": "Universal PHB Vortex Node Packet for global symbolic sync."
+          }
+        ],
+        "note": "Global symbolic veil field v3 \u2014 merged from all node packets."
+      },
+      "note": "Global veil field snapshot"
+    }
+  ]
+}

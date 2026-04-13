@@ -1,0 +1,6 @@
+{
+  "id": "temple_hatshepsut_deir_el_bahri_egypt",
+  "meta": { "name": "Temple of Hatshepsut (Deir el-Bahri)", "culture": "Egyptian", "era": "New Kingdom" },
+  "coords": { "lat": 25.7376, "lon": 32.6063, "elev_m": 90 },
+  "coherence": { "geo": 0.90, "orient": 0.81, "material": 0.73, "acoustic": 0.82, "global_index": 0.82 }
+}

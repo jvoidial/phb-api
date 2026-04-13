@@ -1,0 +1,25 @@
+{
+  "engine": "PHB VORTEX SYNC UPDATE",
+  "timestamp": "2026-04-13T13:59:42.996074Z",
+  "modules": {
+    "unified_state": "gcs/runtime/mind_unified_state.json",
+    "personal_transition": "gcs/runtime/personal_transition.json",
+    "evolution": "gcs/runtime/mind_evolution.json",
+    "visual_slice": "gcs/runtime/mind_slice_curiosity_focus.json",
+    "dashboard": "gcs/runtime/mind_dashboard.json",
+    "multiplayer": "gcs/runtime/mind_multiplayer.json",
+    "cognitive_program": "gcs/runtime/mindcognitiveprogram.json"
+  },
+  "p2p": {
+    "packets_dir": "gcs/runtime/p2p_packets/",
+    "veil_field": "gcs/runtime/p2p_veil_field.json"
+  },
+  "metadata": {
+    "version": "1.0",
+    "rsync_ready": true,
+    "voxel_count": 7776,
+    "agent_mode": "multi",
+    "coherence_field": "active"
+  },
+  "note": "Symbolic JSON-only sync manifest for PHB GodCode Vortex."
+}

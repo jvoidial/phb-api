@@ -1,0 +1,6 @@
+{
+  "id": "temple_medinet_habu_egypt",
+  "meta": { "name": "Medinet Habu", "culture": "Egyptian", "era": "New Kingdom" },
+  "coords": { "lat": 25.7290, "lon": 32.6060, "elev_m": 80 },
+  "coherence": { "geo": 0.87, "orient": 0.78, "material": 0.71, "acoustic": 0.81, "global_index": 0.80 }
+}

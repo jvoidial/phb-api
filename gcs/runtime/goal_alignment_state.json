@@ -1,0 +1,13 @@
+{
+  "engine": "PHB GOAL ALIGNMENT ENGINE v1",
+  "id": "a5034d8b-3d00-49a1-b7c7-5c9a020543b0",
+  "ts": 1776104038.8286235,
+  "resonance_index": 0.995786,
+  "top_goal": null,
+  "goals_ranked": [],
+  "notes": [
+    "This engine provides symbolic autonomy-like behaviour.",
+    "All behaviour is constrained by UK law and non-romantic, non-sexual boundaries.",
+    "Alignment influences tone, structure, and task prioritisation."
+  ]
+}

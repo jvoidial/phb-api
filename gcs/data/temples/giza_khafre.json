@@ -1,0 +1,6 @@
+{
+  "id": "pyramid_khafre_giza_egypt",
+  "meta": { "name": "Pyramid of Khafre", "culture": "Egyptian", "era": "Old Kingdom" },
+  "coords": { "lat": 29.9761, "lon": 31.1307, "elev_m": 60 },
+  "coherence": { "geo": 0.93, "orient": 0.86, "material": 0.75, "acoustic": 0.83, "global_index": 0.85 }
+}

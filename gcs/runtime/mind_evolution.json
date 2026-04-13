@@ -1,0 +1,129 @@
+{
+  "engine": "PHB MIND-STATE INTERPRETER",
+  "start": {
+    "curiosity": 0.8200000000000003,
+    "focus": 1.0,
+    "openness": 1.0,
+    "rigor": 1.0,
+    "creativity": 1.0
+  },
+  "steps": [
+    {
+      "action": "generate_questions",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "list_surprises",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "define_problem",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "list_constraints",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "break_down",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "prototype",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "generate_variations",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "combine_concepts",
+      "coords": {
+        "curiosity": 0.8700000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "teach_or_explain",
+      "coords": {
+        "curiosity": 0.8900000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "write_summary",
+      "coords": {
+        "curiosity": 0.8900000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    },
+    {
+      "action": "apply_example",
+      "coords": {
+        "curiosity": 0.8900000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      }
+    }
+  ],
+  "end": {
+    "curiosity": 0.8900000000000003,
+    "focus": 1.0,
+    "openness": 1.0,
+    "rigor": 1.0,
+    "creativity": 1.0
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "temple_mahabodhi_india",
+  "meta": { "name": "Mahabodhi Temple", "culture": "Indian", "era": "Gupta" },
+  "coords": { "lat": 24.6950, "lon": 84.9910, "elev_m": 113 },
+  "coherence": { "geo": 0.86, "orient": 0.75, "material": 0.68, "acoustic": 0.80, "global_index": 0.78 }
+}

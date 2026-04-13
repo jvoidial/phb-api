@@ -1,0 +1,7 @@
+{
+  "id": "practice_note_making",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Structured Note-Making", "tags": ["externalization","memory"] },
+  "coords": { "curiosity": 0.70, "focus": 0.85, "openness": 0.70, "rigor": 0.80, "creativity": 0.65 },
+  "coherence": { "clarity": 0.89, "depth": 0.87, "integration": 0.88, "global_index": 0.89 }
+}

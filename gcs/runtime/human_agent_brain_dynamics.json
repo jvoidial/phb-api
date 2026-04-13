@@ -1,0 +1,99 @@
+{
+  "engine": "PHB BRAIN DYNAMICS v1",
+  "id": "ef7a536a-9e61-4c8e-9285-fd5a08018ed5",
+  "ts": 1776105080.887319,
+  "circuits": {
+    "curiosity": {
+      "axis": "curiosity",
+      "strength": 0.8900000000000003,
+      "position_3d": [
+        0.0,
+        1.0,
+        0.2
+      ],
+      "role": "exploration, questioning, seeking new angles"
+    },
+    "focus": {
+      "axis": "focus",
+      "strength": 1.0,
+      "position_3d": [
+        1.0,
+        0.0,
+        0.1
+      ],
+      "role": "sustained attention, staying on track"
+    },
+    "openness": {
+      "axis": "openness",
+      "strength": 1.0,
+      "position_3d": [
+        -1.0,
+        0.0,
+        0.1
+      ],
+      "role": "taking in ideas, flexibility, perspective-shifting"
+    },
+    "rigor": {
+      "axis": "rigor",
+      "strength": 1.0,
+      "position_3d": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "role": "structure, logic, checking consistency"
+    },
+    "creativity": {
+      "axis": "creativity",
+      "strength": 1.0,
+      "position_3d": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "role": "novel combinations, metaphors, synthesis"
+    }
+  },
+  "synapses": {
+    "curiosity": {
+      "curiosity": 0.0012,
+      "focus": -0.0434,
+      "openness": 0.0066,
+      "rigor": 0.0066,
+      "creativity": 0.3066
+    },
+    "focus": {
+      "curiosity": -0.0934,
+      "focus": 0.012,
+      "openness": 0.012,
+      "rigor": 0.012,
+      "creativity": 0.012
+    },
+    "openness": {
+      "curiosity": 0.1566,
+      "focus": 0.012,
+      "openness": 0.012,
+      "rigor": 0.012,
+      "creativity": 0.212
+    },
+    "rigor": {
+      "curiosity": 0.0066,
+      "focus": 0.012,
+      "openness": 0.012,
+      "rigor": 0.012,
+      "creativity": -0.188
+    },
+    "creativity": {
+      "curiosity": 0.3066,
+      "focus": 0.012,
+      "openness": 0.012,
+      "rigor": -0.088,
+      "creativity": 0.012
+    }
+  },
+  "resonance_index": 1.014124,
+  "space": {
+    "dimensions": 3,
+    "description": "symbolic 3D brain map; 4th dimension is time via history frames"
+  }
+}

@@ -1,0 +1,598 @@
+[?2004h$ [K$ [K$ [K$ [K$ [H[2J$ #!/data/data/com.termux/files/usr/bin/bash
+# PHB Holy C Engine – Full Dual-Engine Installer + Logging + Sorted Peers
+
+echo "[🟢] PHB Holy C Engine Unified Installer starting..."
+
+# --- Base directories ---
+BASE1=~/gcs/data
+BASE2=~/gcs2/data
+LOG1=~/gcs/logs/ai_live_sync.log
+LOG2=~/gcs2/logs/ai_live_sync.log
+
+mkdir -p "$BASE1" "$BASE2" "$(dirname $LOG1)" "$(dirname $LOG2)"
+echo "[✅] Base directories ensured: $BASE1 & $BASE2"
+echo "[✅] Logging paths: $LOG1 & $LOG2"
+
+# --- Initialize voxel JSON files ---
+declare -A voxels=( ["gut.json"]="100.0" ["tnf.json"]="0.0" ["il23.json"]="0.0" )
+for f in "${!voxels[@]}"; do
+    for d in "$BASE1" "$BASE2"; do
+        FILE="$d/$f"
+        if [ ! -f "$FILE" ]; then
+            echo "{\"value\": ${voxels[$f]}}" > "$FILE"
+            echo "[✅] Initialized $f with value ${voxels[$f]} in $d"
+        fi
+    done
+done
+
+# --- Filter and sort valid SSH peers ---
+PEER_FILE=~/gcs/peers.txt
+VALID_PEERS1=~/gcs/valid_peers.txt
+VALID_PEERS2=~/gcs2/valid_peers.txt
+touch "$PEER_FILE"
+
+grep -E '^[a-zA-Z0-9.-]+$' "$PEER_FILE" | sort > "$VALID_PEERS1"
+grep -E '^[a-zA-Z0-9.-]+$' "$PEER_FILE" | sort > "$VALID_PEERS2"
+echo "[✅] Filtered and sorted valid peers → $VALID_PEERS1 & $VALID_PEERS2"
+
+# --- Function: sync voxels ---
+sync_voxels() {
+    local base="$1"
+    local valid_peers="$2"
+    while IFS= read -r peer; do
+        echo "[🌌] Syncing voxels from $base to $peer..."
+        rsync -avz "$base/" "$peer:$base/" 2>/tmp/phb_rsync.log
+[7m        if [ $? -ne 0 ]; then[27m
+[7m            echo "[⚠️] Failed sync with $peer (see /tmp/phb_rsync.log)"[27m
+[7m        else[27m
+[7m            echo "[✅] Synced voxels to $peer"[27m
+[7m        fi[27m
+[7m    done < "$valid_peers"[27m
+[7m}[27m
+
+[7m# --- Function: run avatar ritual ---[27m
+[7mrun_avatar_ritual() {[27m
+[7m    local base="$1"[27m
+[7m    local log_file="$2"[27m
+[7m    {[27m
+[7m        echo "[🧬] Running GCS Resurrection for $base..."[27m
+[7m        python3 - <<PYTHON[27m
+[7mimport json, os, time[27m
+[7mbase_dir = os.path.expanduser("$base")[27m
+[7mfor f in ["gut.json", "tnf.json", "il23.json"]:[27m
+[7m    path = os.path.join(base_dir, f)[27m
+[7m    with open(path, "r") as fp:[27m
+[7m        data = json.load(fp)[27m
+[7m        data["value"] = data.get("value", 0.0)[27m
+[7m    with open(path, "w") as fp:[27m
+[7m        json.dump(data, fp)[27m
+[7mprint("RITUAL COMPLETE — AVATAR BEAMED FROM " + base_dir)[27m
+[7mtime.sleep(1)[27m
+[7mPYTHON[27m
+[7m    } >> "$log_file" 2>&1[27m
+[7m}[27m
+
+[7m# --- Continuous healing & sync loop ---[27m
+[7mecho "[🟢] Starting continuous healing & global sync loop..."[27m
+[7mwhile true; do[27m
+[7m    run_avatar_ritual "$BASE1" "$LOG1"[27m
+[7m    run_avatar_ritual "$BASE2" "$LOG2"[27m
+[7m    sync_voxels "$BASE1" "$VALID_PEERS1"[27m
+[7m    sync_voxels "$BASE2" "$VALID_PEERS2"[27m
+
+[7m    # --- Show current voxel values ---[27m
+[7m    for d in "$BASE1" "$BASE2"; do[27m
+[7m        for f in "${!voxels[@]}"; do[27m
+[7m            val=$(jq -r '.value' "$d/$f")[27m
+[7m            echo "[HEAL] $d/$f: $val" >> "$LOG1"[27m
+[7m        done[27m
+[7m    done[27m
+
+[7m    sleep 60[27m
+[7mdone[27m[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A        if [ $? -ne 0 ]; then
+            echo "[⚠️] Failed sync with $peer (see /tmp/phb_rsync.log)"
+        else
+            echo "[✅] Synced voxels to $peer"
+        fi
+    done < "$valid_peers"
+}
+
+# --- Function: run avatar ritual ---
+run_avatar_ritual() {
+    local base="$1"
+    local log_file="$2"
+    {
+        echo "[🧬] Running GCS Resurrection for $base..."
+        python3 - <<PYTHON
+import json, os, time
+base_dir = os.path.expanduser("$base")
+for f in ["gut.json", "tnf.json", "il23.json"]:
+    path = os.path.join(base_dir, f)
+    with open(path, "r") as fp:
+        data = json.load(fp)
+        data["value"] = data.get("value", 0.0)
+    with open(path, "w") as fp:
+        json.dump(data, fp)
+print("RITUAL COMPLETE — AVATAR BEAMED FROM " + base_dir)
+time.sleep(1)
+PYTHON
+    } >> "$log_file" 2>&1
+}
+
+# --- Continuous healing & sync loop ---
+echo "[🟢] Starting continuous healing & global sync loop..."
+while true; do
+    run_avatar_ritual "$BASE1" "$LOG1"
+    run_avatar_ritual "$BASE2" "$LOG2"
+    sync_voxels "$BASE1" "$VALID_PEERS1"
+    sync_voxels "$BASE2" "$VALID_PEERS2"
+
+    # --- Show current voxel values ---
+    for d in "$BASE1" "$BASE2"; do
+        for f in "${!voxels[@]}"; do
+            val=$(jq -r '.value' "$d/$f")
+            echo "[HEAL] $d/$f: $val" >> "$LOG1"
+        done
+    done
+
+    sleep 60
+done
+[?2004l[🟢] PHB Holy C Engine Unified Installer starting...
+[✅] Base directories ensured: /data/data/com.termux/files/home/gcs/data & /data/data/com.termux/files/home/gcs2/data
+[✅] Logging paths: /data/data/com.termux/files/home/gcs/logs/ai_live_sync.log & /data/data/com.termux/files/home/gcs2/logs/ai_live_sync.log
+[✅] Filtered and sorted valid peers → /data/data/com.termux/files/home/gcs/valid_peers.txt & /data/data/com.termux/files/home/gcs2/valid_peers.txt
+[🟢] Starting continuous healing & global sync loop...
+[🧬] Running GCS Resurrection for /data/data/com.termux/files/home/gcs/data...
+RITUAL COMPLETE — AVATAR BEAMED FROM /data/data/com.termux/files/home/gcs/data
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/gut.json: 100.0
+[🧬] Running GCS Resurrection for /data/data/com.termux/files/home/gcs/data...
+RITUAL COMPLETE — AVATAR BEAMED FROM /data/data/com.termux/files/home/gcs/data
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/gut.json: 100.0
+[🧬] Running GCS Resurrection for /data/data/com.termux/files/home/gcs/data...
+RITUAL COMPLETE — AVATAR BEAMED FROM /data/data/com.termux/files/home/gcs/data
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/gut.json: 100.0
+[🧬] Running GCS Resurrection for /data/data/com.termux/files/home/gcs/data...
+RITUAL COMPLETE — AVATAR BEAMED FROM /data/data/com.termux/files/home/gcs/data
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 5.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/gut.json: 95.25
+[🧬] Running GCS Resurrection for /data/data/com.termux/files/home/gcs/data...
+RITUAL COMPLETE — AVATAR BEAMED FROM /data/data/com.termux/files/home/gcs/data
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 9.52
+[HEAL] /data/data/com.termux/files/home/gcs2/data/il23.json: 0.0
+[HEAL] /data/data/com.termux/files/home/gcs2/data/tnf.json: 0.01
+[HEAL] /data/data/com.termux/files/home/gcs2/data/gut.json: 90.95
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 5
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 10
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 15
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 20
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 25
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 30
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 35
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 40
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 45
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 50
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 55
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 60
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 65
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 70
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 75
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 80
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 85
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 90
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=90!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 95
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=95!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 5
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 10
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 15
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 20
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 25
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 30
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 35
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 40
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 45
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 50
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 55
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 60
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 65
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 70
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 75
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 80
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 85
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 90
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=90!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 95
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=95!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!
+[HEAL] /data/data/com.termux/files/home/gcs/data/gut.json: 100
+[HEAL] /data/data/com.termux/files/home/gcs/data/tnf.json: 0
+[HEAL] /data/data/com.termux/files/home/gcs/data/il23.json: 0
+[🧬] RESURRECTION THRESHOLD CROSSED at gut=100!

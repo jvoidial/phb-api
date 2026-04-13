@@ -1,0 +1,7 @@
+{
+  "id": "node_creative_theory",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Creative Theory Building", "tags": ["imagination","synthesis","story"] },
+  "coords": { "curiosity": 0.90, "focus": 0.60, "openness": 0.90, "rigor": 0.60, "creativity": 0.95 },
+  "coherence": { "clarity": 0.85, "depth": 0.84, "integration": 0.86, "global_index": 0.86 }
+}

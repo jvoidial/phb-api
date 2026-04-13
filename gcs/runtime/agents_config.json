@@ -1,0 +1,26 @@
+{
+  "agents": [
+    {
+      "id": "agent_alpha",
+      "label": "Alpha – math/physics heavy",
+      "coords": {
+        "curiosity": 0.70,
+        "focus": 0.80,
+        "openness": 0.65,
+        "rigor": 0.85,
+        "creativity": 0.60
+      }
+    },
+    {
+      "id": "agent_beta",
+      "label": "Beta – creative/theory heavy",
+      "coords": {
+        "curiosity": 0.85,
+        "focus": 0.65,
+        "openness": 0.90,
+        "rigor": 0.60,
+        "creativity": 0.90
+      }
+    }
+  ]
+}

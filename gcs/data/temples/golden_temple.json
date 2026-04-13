@@ -1,0 +1,6 @@
+{
+  "id": "temple_golden_amritsar_india",
+  "meta": { "name": "Golden Temple (Harmandir Sahib)", "culture": "Indian", "era": "Sikh" },
+  "coords": { "lat": 31.6200, "lon": 74.8765, "elev_m": 234 },
+  "coherence": { "geo": 0.83, "orient": 0.74, "material": 0.71, "acoustic": 0.82, "global_index": 0.78 }
+}

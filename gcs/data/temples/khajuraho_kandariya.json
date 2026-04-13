@@ -1,0 +1,6 @@
+{
+  "id": "temple_kandariya_mahadeva_khajuraho_india",
+  "meta": { "name": "Kandariya Mahadeva Temple (Khajuraho)", "culture": "Indian", "era": "Chandela" },
+  "coords": { "lat": 24.8526, "lon": 79.9220, "elev_m": 282 },
+  "coherence": { "geo": 0.89, "orient": 0.77, "material": 0.71, "acoustic": 0.81, "global_index": 0.80 }
+}

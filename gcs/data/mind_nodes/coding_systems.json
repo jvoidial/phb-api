@@ -1,0 +1,7 @@
+{
+  "id": "node_coding_systems",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Coding & Systems Thinking", "tags": ["engineering","abstraction","debugging"] },
+  "coords": { "curiosity": 0.75, "focus": 0.85, "openness": 0.55, "rigor": 0.85, "creativity": 0.70 },
+  "coherence": { "clarity": 0.89, "depth": 0.87, "integration": 0.85, "global_index": 0.88 }
+}

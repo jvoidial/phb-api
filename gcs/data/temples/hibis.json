@@ -1,0 +1,6 @@
+{
+  "id": "temple_hibis_kharga_egypt",
+  "meta": { "name": "Temple of Hibis (Kharga Oasis)", "culture": "Egyptian", "era": "Late Period" },
+  "coords": { "lat": 25.4410, "lon": 30.5460, "elev_m": 50 },
+  "coherence": { "geo": 0.83, "orient": 0.75, "material": 0.69, "acoustic": 0.78, "global_index": 0.77 }
+}

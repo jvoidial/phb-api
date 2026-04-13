@@ -1,0 +1,6 @@
+{
+  "id": "temple_karnak_egypt",
+  "meta": { "name": "Karnak Temple", "culture": "Egyptian", "era": "New Kingdom" },
+  "coords": { "lat": 25.7188, "lon": 32.6573, "elev_m": 80 },
+  "coherence": { "geo": 0.89, "orient": 0.80, "material": 0.72, "acoustic": 0.82, "global_index": 0.81 }
+}

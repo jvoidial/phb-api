@@ -1,0 +1,6 @@
+{
+  "id": "temple_abydos_seti_egypt",
+  "meta": { "name": "Temple of Seti I (Abydos)", "culture": "Egyptian", "era": "New Kingdom" },
+  "coords": { "lat": 26.1860, "lon": 31.9210, "elev_m": 70 },
+  "coherence": { "geo": 0.89, "orient": 0.79, "material": 0.72, "acoustic": 0.82, "global_index": 0.81 }
+}

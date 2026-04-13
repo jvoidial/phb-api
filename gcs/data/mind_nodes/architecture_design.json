@@ -1,0 +1,7 @@
+{
+  "id": "node_architecture_design",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Architecture & Design", "tags": ["space","function","aesthetics"] },
+  "coords": { "curiosity": 0.80, "focus": 0.80, "openness": 0.80, "rigor": 0.75, "creativity": 0.90 },
+  "coherence": { "clarity": 0.86, "depth": 0.84, "integration": 0.85, "global_index": 0.86 }
+}

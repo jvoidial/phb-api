@@ -1,0 +1,35 @@
+[
+  {
+    "ts": 1776103016.2233856,
+    "circuits": {
+      "curiosity": 0.7500000000000002,
+      "focus": 1.0,
+      "openness": 1.0,
+      "rigor": 1.0,
+      "creativity": 1.0
+    },
+    "resonance_index": 0.97595
+  },
+  {
+    "ts": 1776103254.03844,
+    "circuits": {
+      "curiosity": 0.8200000000000003,
+      "focus": 1.0,
+      "openness": 1.0,
+      "rigor": 1.0,
+      "creativity": 1.0
+    },
+    "resonance_index": 0.995786
+  },
+  {
+    "ts": 1776105080.887319,
+    "circuits": {
+      "curiosity": 0.8900000000000003,
+      "focus": 1.0,
+      "openness": 1.0,
+      "rigor": 1.0,
+      "creativity": 1.0
+    },
+    "resonance_index": 1.014124
+  }
+]

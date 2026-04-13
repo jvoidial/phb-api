@@ -1,0 +1,6 @@
+{
+  "id": "temple_kom_ombo_egypt",
+  "meta": { "name": "Temple of Kom Ombo", "culture": "Egyptian", "era": "Ptolemaic" },
+  "coords": { "lat": 24.4520, "lon": 32.9280, "elev_m": 110 },
+  "coherence": { "geo": 0.85, "orient": 0.77, "material": 0.70, "acoustic": 0.80, "global_index": 0.78 }
+}

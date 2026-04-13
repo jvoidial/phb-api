@@ -1,0 +1,50 @@
+{
+  "engine": "PHB VORTEX SYNC UPDATE",
+  "version": "2.0",
+  "timestamp": "2026-04-13T14:09:43.124130+00:00",
+  "modules": {
+    "unified_state": {
+      "path": "gcs/runtime/mind_unified_state.json",
+      "sha256": "421293a1bb58a1d55e33a7c1e6a83a7626e48531017baca5d713aa6e730dd2ec"
+    },
+    "personal_transition": {
+      "path": "gcs/runtime/personal_transition.json",
+      "sha256": "47147043ad7ae44cfee62c7f3914a66059ec1cd4987b5d88817c6da3633e642b"
+    },
+    "evolution": {
+      "path": "gcs/runtime/mind_evolution.json",
+      "sha256": "a76279498545a29d3a115efa4596bf9f0f74691cde9d204ec649032ff684a4a0"
+    },
+    "visual_slice": {
+      "path": "gcs/runtime/mind_slice_curiosity_focus.json",
+      "sha256": "7fe2008ab9d589826512e2350420b87bd019ae9f784fed3840881c42e4747eab"
+    },
+    "dashboard": {
+      "path": "gcs/runtime/mind_dashboard.json",
+      "sha256": "7f4cc135c3866ecd1ec9671851d5fb3f89378e5c6116276a2f8780c836e6ec6d"
+    },
+    "multiplayer": {
+      "path": "gcs/runtime/mind_multiplayer.json",
+      "sha256": "a00eecaf0b798c3520cfa138e48ff7cced92cc3bb384580b3b3a04507164e083"
+    },
+    "cognitive_program": {
+      "path": "gcs/runtime/mindcognitiveprogram.json",
+      "sha256": null
+    }
+  },
+  "p2p": {
+    "packets_dir": "gcs/runtime/p2p_packets/",
+    "veil_field": {
+      "path": "gcs/runtime/p2p_veil_field.json",
+      "sha256": null
+    }
+  },
+  "metadata": {
+    "rsync_ready": true,
+    "voxel_count": 7776,
+    "agent_mode": "multi",
+    "coherence_field": "active",
+    "integrity": "sha256"
+  },
+  "note": "v2 manifest with hashes for integrity checking."
+}

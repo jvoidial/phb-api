@@ -1,0 +1,6 @@
+{
+  "id": "temple_kashi_vishwanath_india",
+  "meta": { "name": "Kashi Vishwanath Temple", "culture": "Indian", "era": "Medieval" },
+  "coords": { "lat": 25.3109, "lon": 83.0095, "elev_m": 81 },
+  "coherence": { "geo": 0.84, "orient": 0.76, "material": 0.69, "acoustic": 0.78, "global_index": 0.77 }
+}

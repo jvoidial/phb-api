@@ -1,0 +1,6 @@
+{
+  "id": "temple_padmanabhaswamy_india",
+  "meta": { "name": "Padmanabhaswamy Temple", "culture": "Indian", "era": "Medieval" },
+  "coords": { "lat": 8.4828, "lon": 76.9431, "elev_m": 16 },
+  "coherence": { "geo": 0.85, "orient": 0.76, "material": 0.70, "acoustic": 0.79, "global_index": 0.78 }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "temple_luxor_egypt",
+  "meta": { "name": "Luxor Temple", "culture": "Egyptian", "era": "New Kingdom" },
+  "coords": { "lat": 25.6995, "lon": 32.6396, "elev_m": 76 },
+  "coherence": { "geo": 0.87, "orient": 0.79, "material": 0.71, "acoustic": 0.81, "global_index": 0.80 }
+}

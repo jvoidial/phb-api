@@ -1,0 +1,6 @@
+{
+  "id": "temple_abu_simbel_egypt",
+  "meta": { "name": "Abu Simbel", "culture": "Egyptian", "era": "New Kingdom" },
+  "coords": { "lat": 22.3372, "lon": 31.6258, "elev_m": 180 },
+  "coherence": { "geo": 0.90, "orient": 0.82, "material": 0.73, "acoustic": 0.83, "global_index": 0.82 }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "node_philosophy_logic",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Philosophy & Logic", "tags": ["reasoning","ethics","concepts"] },
+  "coords": { "curiosity": 0.75, "focus": 0.75, "openness": 0.80, "rigor": 0.80, "creativity": 0.70 },
+  "coherence": { "clarity": 0.88, "depth": 0.87, "integration": 0.86, "global_index": 0.88 }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "temple_kailasa_ellora_india",
+  "meta": { "name": "Kailasa Temple (Ellora)", "culture": "Indian", "era": "Rashtrakuta" },
+  "coords": { "lat": 20.0268, "lon": 75.1791, "elev_m": 732 },
+  "coherence": { "geo": 0.92, "orient": 0.74, "material": 0.75, "acoustic": 0.82, "global_index": 0.81 }
+}

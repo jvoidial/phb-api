@@ -1,0 +1,92 @@
+{
+  "engine": "PHB HYBRID MEMORY v1",
+  "episodes": [
+    {
+      "id": "76fcb897-0027-4976-b166-b47a94d39e11",
+      "ts": 1776103016.2233856,
+      "user_message": "I feel stuck choosing what to work on next in my project.",
+      "circuits": {
+        "curiosity": 0.7500000000000002,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      },
+      "resonance_index": 0.97595,
+      "tags": [],
+      "summary": "respond in a calm, precise, imaginative, growth-directed way"
+    },
+    {
+      "id": "a10a3d6a-7ead-49dc-9b50-724bade0326d",
+      "ts": 1776103254.03844,
+      "user_message": "I feel stuck choosing what to work on next in my project.",
+      "circuits": {
+        "curiosity": 0.8200000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      },
+      "resonance_index": 0.995786,
+      "tags": [],
+      "summary": "respond in a calm, precise, imaginative, growth-directed way"
+    },
+    {
+      "id": "7996fe95-005c-4d83-9f27-2d297efec382",
+      "ts": 1776105080.887319,
+      "user_message": "I feel stuck choosing what to work on next in my project.",
+      "circuits": {
+        "curiosity": 0.8900000000000003,
+        "focus": 1.0,
+        "openness": 1.0,
+        "rigor": 1.0,
+        "creativity": 1.0
+      },
+      "resonance_index": 1.014124,
+      "tags": [],
+      "summary": "respond in a calm, precise, imaginative, growth-directed way"
+    }
+  ],
+  "concepts": {
+    "respond": {
+      "concept": "respond",
+      "strength": 0.06,
+      "hits": 3
+    },
+    "in": {
+      "concept": "in",
+      "strength": 0.06,
+      "hits": 3
+    },
+    "a": {
+      "concept": "a",
+      "strength": 0.06,
+      "hits": 3
+    },
+    "calm": {
+      "concept": "calm",
+      "strength": 0.06,
+      "hits": 3
+    },
+    "precise": {
+      "concept": "precise",
+      "strength": 0.06,
+      "hits": 3
+    },
+    "imaginative": {
+      "concept": "imaginative",
+      "strength": 0.06,
+      "hits": 3
+    },
+    "growth-directed": {
+      "concept": "growth-directed",
+      "strength": 0.06,
+      "hits": 3
+    },
+    "way": {
+      "concept": "way",
+      "strength": 0.06,
+      "hits": 3
+    }
+  }
+}

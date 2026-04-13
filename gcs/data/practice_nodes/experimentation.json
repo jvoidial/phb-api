@@ -1,0 +1,7 @@
+{
+  "id": "practice_experimentation",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Experimentation", "tags": ["trial","feedback"] },
+  "coords": { "curiosity": 0.90, "focus": 0.70, "openness": 0.85, "rigor": 0.70, "creativity": 0.85 },
+  "coherence": { "clarity": 0.86, "depth": 0.84, "integration": 0.85, "global_index": 0.86 }
+}

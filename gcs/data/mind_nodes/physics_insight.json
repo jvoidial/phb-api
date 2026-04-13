@@ -1,0 +1,7 @@
+{
+  "id": "node_physics_insight",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Physics Insight", "tags": ["models","intuition","experiments"] },
+  "coords": { "curiosity": 0.80, "focus": 0.70, "openness": 0.60, "rigor": 0.80, "creativity": 0.70 },
+  "coherence": { "clarity": 0.88, "depth": 0.86, "integration": 0.84, "global_index": 0.87 }
+}

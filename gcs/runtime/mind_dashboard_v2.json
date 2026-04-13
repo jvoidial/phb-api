@@ -1,0 +1,118 @@
+{
+  "engine": "PHB MIND DASHBOARD v2",
+  "axes": [
+    "curiosity",
+    "focus",
+    "openness",
+    "rigor",
+    "creativity"
+  ],
+  "target": {
+    "curiosity": 0.9,
+    "focus": 0.85,
+    "openness": 0.85,
+    "rigor": 0.85,
+    "creativity": 0.9
+  },
+  "current": {
+    "curiosity": 0.8900000000000003,
+    "focus": 1.0,
+    "openness": 1.0,
+    "rigor": 1.0,
+    "creativity": 1.0
+  },
+  "evolution_v3": {
+    "start": {
+      "curiosity": 0.8900000000000003,
+      "focus": 1.0,
+      "openness": 1.0,
+      "rigor": 1.0,
+      "creativity": 1.0
+    },
+    "end": {
+      "curiosity": 0.8996124046891549,
+      "focus": 0.855813929662677,
+      "openness": 0.855813929662677,
+      "rigor": 0.855813929662677,
+      "creativity": 0.9038759531084515
+    },
+    "steps": 20,
+    "dist_min": 0.005,
+    "dist_max": 0.106,
+    "dist_last": 0.005,
+    "coherence_min": 0.894,
+    "coherence_max": 0.995,
+    "coherence_last": 0.995
+  },
+  "last_execute": {
+    "program_signature": "C0.8-F0.8-O0.8-R0.8-Cr0.8",
+    "start_state": {
+      "curiosity": 0.8200000000000003,
+      "focus": 1.0,
+      "openness": 1.0,
+      "rigor": 1.0,
+      "creativity": 1.0
+    },
+    "end_state": {
+      "curiosity": 0.8900000000000003,
+      "focus": 1.0,
+      "openness": 1.0,
+      "rigor": 1.0,
+      "creativity": 1.0
+    },
+    "phases_completed": 4,
+    "actions_run": [
+      "generate_questions",
+      "list_surprises",
+      "define_problem",
+      "list_constraints",
+      "break_down",
+      "prototype",
+      "generate_variations",
+      "combine_concepts",
+      "teach_or_explain",
+      "write_summary",
+      "apply_example"
+    ]
+  },
+  "agents": [
+    {
+      "id": "agent_alpha",
+      "label": "Alpha \u2013 math/physics heavy",
+      "start": {
+        "curiosity": 0.7,
+        "focus": 0.8,
+        "openness": 0.65,
+        "rigor": 0.85,
+        "creativity": 0.6
+      },
+      "end": {
+        "curiosity": 0.8606251191318555,
+        "focus": 0.8401562797829639,
+        "openness": 0.8106251191318554,
+        "rigor": 0.85,
+        "creativity": 0.8409376786977831
+      },
+      "steps": 10
+    },
+    {
+      "id": "agent_beta",
+      "label": "Beta \u2013 creative/theory heavy",
+      "start": {
+        "curiosity": 0.85,
+        "focus": 0.65,
+        "openness": 0.9,
+        "rigor": 0.6,
+        "creativity": 0.9
+      },
+      "end": {
+        "curiosity": 0.890156279782964,
+        "focus": 0.8106251191318554,
+        "openness": 0.859843720217036,
+        "rigor": 0.8007813989148193,
+        "creativity": 0.9
+      },
+      "steps": 10
+    }
+  ]
+}

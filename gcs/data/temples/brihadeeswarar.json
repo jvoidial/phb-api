@@ -1,0 +1,6 @@
+{
+  "id": "temple_brihadeeswarar_india",
+  "meta": { "name": "Brihadeeswarar Temple", "culture": "Indian", "era": "Chola" },
+  "coords": { "lat": 10.7828, "lon": 79.1318, "elev_m": 66 },
+  "coherence": { "geo": 0.88, "orient": 0.79, "material": 0.72, "acoustic": 0.81, "global_index": 0.80 }
+}

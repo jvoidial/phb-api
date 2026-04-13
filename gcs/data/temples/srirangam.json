@@ -1,0 +1,6 @@
+{
+  "id": "temple_srirangam_india",
+  "meta": { "name": "Sri Ranganathaswamy Temple (Srirangam)", "culture": "Indian", "era": "Medieval" },
+  "coords": { "lat": 10.8620, "lon": 78.6930, "elev_m": 70 },
+  "coherence": { "geo": 0.86, "orient": 0.78, "material": 0.70, "acoustic": 0.81, "global_index": 0.79 }
+}

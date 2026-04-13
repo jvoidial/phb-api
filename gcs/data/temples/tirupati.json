@@ -1,0 +1,6 @@
+{
+  "id": "temple_tirupati_india",
+  "meta": { "name": "Tirumala Venkateswara Temple", "culture": "Indian", "era": "Medieval" },
+  "coords": { "lat": 13.6836, "lon": 79.3473, "elev_m": 853 },
+  "coherence": { "geo": 0.87, "orient": 0.78, "material": 0.73, "acoustic": 0.82, "global_index": 0.80 }
+}

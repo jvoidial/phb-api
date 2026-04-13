@@ -1,0 +1,6 @@
+{
+  "id": "temple_virupaksha_hampi_india",
+  "meta": { "name": "Virupaksha Temple (Hampi)", "culture": "Indian", "era": "Vijayanagara" },
+  "coords": { "lat": 15.3350, "lon": 76.4600, "elev_m": 467 },
+  "coherence": { "geo": 0.85, "orient": 0.76, "material": 0.70, "acoustic": 0.80, "global_index": 0.78 }
+}

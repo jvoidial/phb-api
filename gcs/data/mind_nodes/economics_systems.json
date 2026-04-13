@@ -1,0 +1,7 @@
+{
+  "id": "node_economics_systems",
+  "type": "PHB_MIND_NODE",
+  "meta": { "name": "Economics & Systems", "tags": ["trade","incentives","dynamics"] },
+  "coords": { "curiosity": 0.80, "focus": 0.80, "openness": 0.70, "rigor": 0.80, "creativity": 0.70 },
+  "coherence": { "clarity": 0.87, "depth": 0.86, "integration": 0.86, "global_index": 0.87 }
+}

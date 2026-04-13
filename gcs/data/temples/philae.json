@@ -1,0 +1,6 @@
+{
+  "id": "temple_philae_egypt",
+  "meta": { "name": "Temple of Philae", "culture": "Egyptian", "era": "Ptolemaic" },
+  "coords": { "lat": 24.0240, "lon": 32.8840, "elev_m": 190 },
+  "coherence": { "geo": 0.86, "orient": 0.78, "material": 0.70, "acoustic": 0.80, "global_index": 0.79 }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "practice_journaling",
+  "type": "PHB_PRACTICE_NODE",
+  "meta": { "name": "Reflective Journaling", "tags": ["reflection","integration"] },
+  "coords": { "curiosity": 0.75, "focus": 0.75, "openness": 0.85, "rigor": 0.75, "creativity": 0.70 },
+  "coherence": { "clarity": 0.88, "depth": 0.87, "integration": 0.88, "global_index": 0.88 }
+}
