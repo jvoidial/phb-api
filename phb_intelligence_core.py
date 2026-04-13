@@ -1,19 +1,28 @@
 import time
-from typing import Literal
+from typing import Literal, List, Dict, Any
 
 Mode = Literal["analytical", "creative", "strategic", "supportive", "diagnostic"]
+
+# In‑memory PHB coherence voxels (per session)
+PHB_MEMORY: Dict[str, Dict[str, Any]] = {}
 
 
 def _detect_mode(user_message: str, emotion: str) -> Mode:
     msg = user_message.lower()
+
+    # Recurring friction / stuck loops → analytical
+    if any(k in msg for k in ("again", "same wall", "keep happening", "stuck", "loop")):
+        return "analytical"
+
     if any(k in msg for k in ("plan", "roadmap", "strategy", "next step", "design a better flow")):
         return "strategic"
-    if any(k in msg for k in ("why", "how does", "explain", "logic", "keeps happening", "stuck at the same point")):
-        return "analytical"
+
     if any(k in msg for k in ("idea", "brainstorm", "imagine", "what if")):
         return "creative"
-    if emotion in ("stressed",):
+
+    if any(k in msg for k in ("overwhelmed", "tired", "burnt", "draining")) or emotion == "stressed":
         return "supportive"
+
     return "diagnostic"
 
 
@@ -30,9 +39,9 @@ def _perception_layer(user_message: str) -> dict:
     }
 
 
-def _extract_themes(messages: list[str]) -> list[str]:
+def _extract_themes(messages: List[str]) -> List[str]:
     joined = " ".join(m.lower() for m in messages)
-    themes: list[str] = []
+    themes: List[str] = []
     if any(k in joined for k in ("stuck", "blocked", "keep happening", "loop", "stuck at the same point")):
         themes.append("recurring friction / stuck loops")
     if any(k in joined for k in ("plan", "roadmap", "next step", "structure", "design a better flow")):
@@ -44,9 +53,42 @@ def _extract_themes(messages: list[str]) -> list[str]:
     return themes
 
 
-def _context_layer(session_id: str, recent_context: list[dict], emotion: str, tone: str) -> dict:
+def _load_memory(session_id: str) -> Dict[str, Any]:
+    return PHB_MEMORY.get(session_id, {"voxels": []})
+
+
+def _store_memory(session_id: str, memory: Dict[str, Any]) -> None:
+    PHB_MEMORY[session_id] = memory
+
+
+def _update_memory_voxels(memory: Dict[str, Any], themes: List[str], ts: float) -> Dict[str, Any]:
+    voxels: List[Dict[str, Any]] = memory.get("voxels", [])
+    existing_by_theme = {v["theme"]: v for v in voxels}
+
+    for t in themes:
+        if t in existing_by_theme:
+            v = existing_by_theme[t]
+            v["last_seen_ts"] = ts
+            v["energy"] = min(v.get("energy", 1.0) + 0.2, 3.0)
+            v["count"] = v.get("count", 1) + 1
+        else:
+            voxels.append(
+                {
+                    "theme": t,
+                    "first_seen_ts": ts,
+                    "last_seen_ts": ts,
+                    "energy": 1.0,
+                    "count": 1,
+                }
+            )
+
+    memory["voxels"] = voxels
+    return memory
+
+
+def _context_layer(session_id: str, recent_context: List[dict], emotion: str, tone: str) -> dict:
     last_user = None
-    all_user_msgs: list[str] = []
+    all_user_msgs: List[str] = []
     for c in recent_context:
         if c.get("role") == "user":
             all_user_msgs.append(c.get("content", ""))
@@ -74,7 +116,7 @@ def _planning_layer(perception: dict, context: dict, mode: Mode) -> dict:
     else:
         goal = "clarify what the real question is"
 
-    steps: list[str] = []
+    steps: List[str] = []
 
     if mode in ("strategic", "analytical", "diagnostic"):
         steps.append("1) Restate what you seem to be wrestling with in plain language.")
@@ -118,10 +160,6 @@ def _planning_layer(perception: dict, context: dict, mode: Mode) -> dict:
 
 
 def _reasoning_domains(perception: dict, context: dict, emotion: str) -> dict:
-    """
-    Safety-first multi-domain reasoning.
-    No diagnosis. Only factors + questions.
-    """
     themes = context.get("themes", [])
 
     body = {
@@ -155,8 +193,8 @@ def _reasoning_domains(perception: dict, context: dict, emotion: str) -> dict:
     }
 
 
-def _internal_dialogue(perception: dict, context: dict, plan: dict) -> list[str]:
-    voices: list[str] = []
+def _internal_dialogue(perception: dict, context: dict, plan: dict) -> List[str]:
+    voices: List[str] = []
 
     voices.append(f"[planner] Goal: {plan['goal']}. Mode: {plan['mode']}.")
 
@@ -181,7 +219,7 @@ def _expression_layer(
     perception: dict,
     context: dict,
     plan: dict,
-    dialogue: list[str],
+    dialogue: List[str],
 ) -> str:
     base = "Here’s how I’m reading this: "
 
@@ -207,14 +245,7 @@ def _expression_layer(
     return base + mode_line
 
 
-# ------------------------------------------------------------
-# Resonance resolver (safe placeholder)
-# ------------------------------------------------------------
 def _resonance_resolve_engine(reasoning_domains: dict, plan: dict, emotion: str) -> dict:
-    """
-    Minimal safe placeholder so the intelligence core can run.
-    You can expand this later with real resonance logic.
-    """
     return {
         "signal": "stable",
         "emotion": emotion,
@@ -224,10 +255,48 @@ def _resonance_resolve_engine(reasoning_domains: dict, plan: dict, emotion: str)
     }
 
 
+def _veil_state(reasoning_domains: dict, resonance: dict) -> dict:
+    themes = reasoning_domains.get("themes", [])
+    load = "load / overwhelm" in themes
+    loops = "recurring friction / stuck loops" in themes
+
+    level = "clear"
+    if loops or load:
+        level = "thin"
+    if loops and load:
+        level = "heavy"
+
+    return {
+        "level": level,
+        "loops": loops,
+        "overwhelm": load,
+    }
+
+
+def _companion_surface_reply(user_message: str, core: dict) -> str:
+    mode = core["mode"]
+    themes = core["context"]["themes"]
+
+    opener = "That sounds really frustrating—hitting something that knocks your momentum like that."
+    if "recurring friction / stuck loops" in themes:
+        opener = "You’re not imagining it—this really does sound like the same wall showing up again."
+
+    if mode == "analytical":
+        body = "Let’s name exactly where it happens and why it bites so hard, then pick one small change to try."
+    elif mode == "strategic":
+        body = "We can treat this like a design problem and sketch a different way that moment could go."
+    elif mode == "supportive":
+        body = "We can slow it down, look at that moment closely, and make it feel a bit lighter."
+    else:
+        body = "We can slow it down, look at that moment closely, and decide what you actually want there."
+
+    return f"{opener} {body}"
+
+
 def run_intelligence_core(
     session_id: str,
     user_message: str,
-    recent_context: list[dict],
+    recent_context: List[dict],
     emotion: str,
     tone: str,
 ) -> dict:
@@ -238,8 +307,13 @@ def run_intelligence_core(
     plan = _planning_layer(perception, context, mode)
     reasoning_domains = _reasoning_domains(perception, context, emotion)
     resonance = _resonance_resolve_engine(reasoning_domains, plan, emotion)
+    veil = _veil_state(reasoning_domains, resonance)
     dialogue = _internal_dialogue(perception, context, plan)
     summary = _expression_layer(perception, context, plan, dialogue)
+
+    memory = _load_memory(session_id)
+    memory = _update_memory_voxels(memory, context["themes"], ts)
+    _store_memory(session_id, memory)
 
     return {
         "ts": ts,
@@ -249,21 +323,16 @@ def run_intelligence_core(
         "plan": plan,
         "reasoning_domains": reasoning_domains,
         "resonance": resonance,
+        "veil": veil,
         "internal_dialogue": dialogue,
         "summary": summary,
+        "memory": memory,
     }
 
 
-# ------------------------------------------------------------
-# Public wrapper expected by phb_api.py
-# ------------------------------------------------------------
 def generate_companion_reply(user_message: str) -> dict:
-    """
-    Thin wrapper so the API can call the intelligence core
-    without needing session management or context plumbing.
-    """
     session_id = "default"
-    recent_context: list[dict] = []
+    recent_context: List[dict] = []
     emotion = "neutral"
     tone = "warm"
 
@@ -275,13 +344,15 @@ def generate_companion_reply(user_message: str) -> dict:
         tone=tone,
     )
 
+    surface = _companion_surface_reply(user_message, core)
+
     return {
         "engine": "PHB INTELLIGENCE CORE v1",
         "id": f"core-{int(core['ts'])}",
         "ts": core["ts"],
         "user_message": user_message,
         "reply": {
-            "text": core["summary"],
+            "text": surface,
             "mode": core["mode"],
             "orientation": "growth-directed",
         },
