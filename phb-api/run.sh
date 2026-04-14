@@ -1,13 +1,12 @@
 #!/bin/bash
 
-echo "🧠 PHB AI OS STARTING (DAEMON MODE)..."
+echo "🧠 PHB AI OS STARTING (IMPORT-STABLE MODE)..."
 
 cd "$(dirname "$0")"
 
-# kill only uvicorn safely
-pkill -f "uvicorn main:app" || true
+export PYTHONPATH=$PWD
 
+pkill -f "uvicorn main:app" || true
 sleep 1
 
-# IMPORTANT: keep process attached (no auto-exit wrapper)
 exec uvicorn main:app --host 0.0.0.0 --port 8000
