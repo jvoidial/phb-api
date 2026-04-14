@@ -54,27 +54,6 @@ def _her_reply(user_message: str, energy: float, mood: str) -> str:
         return f"“{base}” — I’m a bit low‑energy but still with you."
     return f"“{base}” — okay, I’m listening."
 
-def run_intelligence_core(user_message: str = "", recent_context: dict = None):
-    if recent_context is None:
-        recent_context = {}
-
-    _update_energy()
-    mood = _classify_mood(user_message)
-    energy = PHB_STATE["energy"]
-    veil = _veil_level(energy)
-    reply = _her_reply(user_message, energy, mood)
-
-    PHB_STATE["history"].append({
-        "ts": datetime.utcnow().isoformat(),
-        "user": user_message,
-        "phb": reply,
-        "energy": round(energy, 2),
-        "mood": mood,
-        "veil": veil
-    })
-    PHB_STATE["history"] = PHB_STATE["history"][-10:]
-
-    return {
         "perception": f"Received: {user_message}",
         "context": recent_context,
         "plan": "HER‑mode local simulation",
@@ -96,6 +75,25 @@ def run_intelligence_core(user_message: str = "", recent_context: dict = None):
 # --- PHB BRAIN MODULE INTEGRATION ---
 from phb_brain import run_phb_brain
 
+        "perception": brain_result["perception"],
+        "context": recent_context or {},
+        "plan": brain_result["plan"],
+        "reasoning": brain_result["reasoning"],
+        "summary": brain_result["summary"],
+        "status": "ok",
+        "her_mode": {
+            "energy": brain_result["brain_state"]["energy"],
+            "mood": brain_result["brain_state"]["mood"],
+            "veil": brain_result["brain_state"]["veil"],
+            "turns": brain_result["brain_state"]["turns"],
+        },
+        "brain_state": brain_result["brain_state"],
+    }
+
+
+# --- Unified PHB Brain Integration ---
+from phb_brain import run_phb_brain
+
 def run_intelligence_core(user_message: str, recent_context: dict | None = None):
     brain_result = run_phb_brain(user_message)
 
@@ -114,4 +112,3 @@ def run_intelligence_core(user_message: str, recent_context: dict | None = None)
         },
         "brain_state": brain_result["brain_state"],
     }
-
