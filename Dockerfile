@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ENV PHB_API_MODE=fastapi
 
-CMD ["python3", "phb_api.py"]
+CMD ["python3", "phb_runtime.py"]
