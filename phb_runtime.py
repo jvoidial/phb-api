@@ -4,13 +4,13 @@ from typing import Any, Dict
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-from phb_intelligence_core import run_v2
-from phb_intelligence_core_v2_1_engine import run_v2_1
+from phb_intelligence_core import run_intelligence_core
+from phb_intelligence_core_v2_1_engine import run_intelligence_core_1
 
 
 ENGINE_REGISTRY = {
-    "v2": run_v2,
-    "v2.1": run_v2_1,
+    "v2": run_intelligence_core,
+    "v2.1": run_intelligence_core_1,
 }
 
 
@@ -30,7 +30,7 @@ def route_engine(payload: Dict[str, Any]) -> Dict[str, Any]:
         }
 
     engine_key = payload.get("engine", "v2")
-    engine_fn = ENGINE_REGISTRY.get(engine_key, run_v2)
+    engine_fn = ENGINE_REGISTRY.get(engine_key, run_intelligence_core)
 
     return engine_fn(message)
 
