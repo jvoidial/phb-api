@@ -1,10 +1,10 @@
 FROM python:3.11-slim
 
 WORKDIR /app
-COPY . .
+
+# Force fresh copy of the entire repo (no cache)
+ADD . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
-
-ENV PHB_API_MODE=fastapi
 
 CMD ["python3", "phb_runtime.py"]
