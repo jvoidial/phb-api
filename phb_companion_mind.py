@@ -1,7 +1,9 @@
 from typing import Dict, Any
-from phb_brain import run_phb_brain
 
 def run_companion_mind(user_message: str, recent_context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+    # Import inside function to avoid circular import
+    from phb_brain import run_phb_brain
+
     brain = run_phb_brain(user_message)
 
     state = brain["brain_state"]

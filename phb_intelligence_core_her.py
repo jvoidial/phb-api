@@ -1,6 +1,7 @@
-from phb_companion_mind import run_companion_mind
-
 def run_intelligence_core(user_message: str, recent_context: dict | None = None):
+    # Import inside function to avoid circular import
+    from phb_companion_mind import run_companion_mind
+
     result = run_companion_mind(user_message, recent_context or {})
 
     return {
