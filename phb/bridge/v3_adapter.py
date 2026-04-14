@@ -1,36 +1,19 @@
 class V3ArchitectureBridge:
-    """
-    Bridges PHB v2.1 runtime kernel with v3.50 architecture system.
-    """
-
     def __init__(self):
-        self.mode = "simulation-safe"
-        self.v3_loaded = True
+        self.routes = {
+            "default": self.fallback
+        }
 
-    def route(self, message, kernel=None, architecture=None):
-        msg = message.lower()
+    def route(self, message: str):
+        # ALWAYS forward to cognition system
+        return {
+            "route": "cognition_passthrough",
+            "status": "ok",
+            "message": message
+        }
 
-        # Architecture routing
-        if "simulate" in msg:
-            return "SIMULATION: world model active"
-
-        if "evolve" in msg:
-            return "EVOLUTION: architecture tick complete"
-
-        if "swarm" in msg:
-            return "SWARM: consensus stable"
-
-        if "memory" in msg:
-            return "MEMORY: query executed"
-
-        if "timeline" in msg:
-            return "TIMELINE: analysis complete"
-
-        # fallback
-        if kernel:
-            try:
-                return kernel.process(message)
-            except:
-                return "KERNEL: fallback response"
-
-        return "PHB: no handler found"
+    def fallback(self, message):
+        return {
+            "route": "fallback",
+            "message": message
+        }

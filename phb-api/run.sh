@@ -1,12 +1,15 @@
 #!/bin/bash
 
-echo "🧠 PHB AI OS STARTING (CLEAN ROOT MODE)..."
+echo "🧠 PHB AI OS STARTING (PERSISTENT MODE)..."
 
-cd "$(dirname "$0")"
+cd phb-api
+export PYTHONPATH=$(pwd)/..
 
-export PYTHONPATH=$PWD
-
-pkill -f "uvicorn main:app" || true
+pkill -f uvicorn || true
 sleep 1
 
-exec uvicorn main:app --host 0.0.0.0 --port 8000
+exec uvicorn main:app \
+  --host 0.0.0.0 \
+  --port 8000 \
+  --log-level info \
+  --access-log
