@@ -11,16 +11,21 @@ MASTER_KEY = os.getenv("PHB_MASTER_KEY")
 def health():
     return {"status": "PHB API running ✅"}
 
-def run_intelligence_core(user_message: str, context: dict = None):
+# ✅ BULLETPROOF CORE (no arg mismatch possible)
+def run_intelligence_core(*args, **kwargs):
     try:
+        user_message = kwargs.get("user_message") or (args[0] if len(args) > 0 else "")
+        context = kwargs.get("context") or kwargs.get("recent_context") or (args[1] if len(args) > 1 else {})
+
         return {
             "perception": f"Received: {user_message}",
             "context": context or {},
             "plan": "Respond clearly and safely",
-            "reasoning": "Structured reasoning active",
+            "reasoning": "PHB core stabilized",
             "summary": f"User said: {user_message}",
             "status": "ok"
         }
+
     except Exception as e:
         return {"status": "error", "error": str(e)}
 
@@ -41,7 +46,10 @@ async def companion(request: Request, authorization: str = Header(None)):
 
         context = data.get("context", {})
 
-        result = run_intelligence_core(user_message, context)
+        result = run_intelligence_core(
+            user_message=user_message,
+            context=context
+        )
 
         return JSONResponse(content=result)
 
