@@ -2,9 +2,9 @@ from fastapi import FastAPI, Request, HTTPException
 import traceback
 
 from user_manager import UserManager
-from phb_orchestrator_v2 import run_agent
+from phb_orchestrator_v3 import run_agent
 
-app = FastAPI(title="PHB Neural v2")
+app = FastAPI(title="PHB Neural v3 ACTIVE")
 
 users = UserManager()
 
@@ -32,5 +32,5 @@ async def message(request: Request):
 def root():
     return {
         "status": "ok",
-        "system": "PHB NEURAL v2 ACTIVE"
+        "system": "PHB NEURAL v3 ACTIVE"
     }
