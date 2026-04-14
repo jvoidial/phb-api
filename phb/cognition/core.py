@@ -10,50 +10,50 @@ BRAIN = GlobalBrain()
 def think(message, state=None, user_id="default"):
     brain = BRAIN.load()
 
+    # ---------------------------
+    # FIXED STRUCTURE (IMPORTANT)
+    # ---------------------------
     brain.setdefault("memory", {})
-    brain.setdefault("timeline", {})
+    brain.setdefault("timeline", [])
     brain.setdefault("meta", {})
 
     now = datetime.now(timezone.utc)
 
-    # -----------------------
-    # 🧠 RECALL BEFORE WRITE
-    # -----------------------
-    context = build_context(brain["memory"], message)
-
-    # -----------------------
-    # STORE MEMORY
-    # -----------------------
+    # ---------------------------
+    # MEMORY STORAGE
+    # ---------------------------
     brain["memory"][str(now.timestamp())] = {
         "user": user_id,
         "input": message,
         "time": now.isoformat()
     }
 
-    brain["timeline"][str(now.timestamp())] = {
+    # ---------------------------
+    # TIMELINE FIX (APPEND ONLY)
+    # ---------------------------
+    brain["timeline"].append({
         "event": "interaction",
-        "message": message
-    }
+        "message": message,
+        "time": now.isoformat()
+    })
 
-    # -----------------------
-    # INTELLIGENCE + REFLECTION
-    # -----------------------
+    # ---------------------------
+    # RECALL + INTELLIGENCE
+    # ---------------------------
+    context = build_context(brain["memory"], message)
     categorized = categorize(brain["memory"])
+
     brain = reflect(brain)
     sync_status = live_sync()
 
     BRAIN.save(brain)
 
     return {
-        "engine": "cognition-core-v4-recall",
+        "engine": "cognition-core-v3.71-fixed",
         "input": message,
         "user_id": user_id,
 
-        # 🧠 NEW: MEMORY RECALL OUTPUT
-        "memory_recall": {
-            "matched_context": context["context_summary"],
-            "top_matches": context["matches"]
-        },
+        "memory_recall": context["context_summary"],
 
         "brain_snapshot": {
             "memory_count": len(brain["memory"]),
@@ -64,6 +64,6 @@ def think(message, state=None, user_id="default"):
         "reflection": brain["meta"].get("reflection"),
         "p2p_sync": sync_status,
 
-        "response": f"PHB recalled + processed: {message}",
+        "response": f"PHB fixed + recalled: {message}",
         "timestamp": now.isoformat()
     }
