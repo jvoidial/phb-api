@@ -1,21 +1,20 @@
-from phb_brain import run_phb_brain
+from phb_companion_mind import run_companion_mind
 
-# Clean, unified HER wrapper using the new PHB brain module
 def run_intelligence_core(user_message: str, recent_context: dict | None = None):
-    brain_result = run_phb_brain(user_message)
+    result = run_companion_mind(user_message, recent_context or {})
 
     return {
-        "perception": brain_result["perception"],
+        "perception": result["raw_brain"]["perception"],
         "context": recent_context or {},
-        "plan": brain_result["plan"],
-        "reasoning": brain_result["reasoning"],
-        "summary": brain_result["summary"],
+        "plan": result["raw_brain"]["plan"],
+        "reasoning": result["raw_brain"]["reasoning"],
+        "summary": result["final_companion_text"],
         "status": "ok",
         "her_mode": {
-            "energy": brain_result["brain_state"]["energy"],
-            "mood": brain_result["brain_state"]["mood"],
-            "veil": brain_result["brain_state"]["veil"],
-            "turns": brain_result["brain_state"]["turns"],
+            "energy": result["energy"],
+            "mood": result["mood"],
+            "veil": result["veil"],
+            "turns": result["raw_brain"]["brain_state"]["turns"],
         },
-        "brain_state": brain_result["brain_state"],
+        "brain_state": result["raw_brain"]["brain_state"],
     }
