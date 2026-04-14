@@ -1,3 +1,8 @@
+#!/bin/bash
+
+echo "🧠 PHB MEMORY SCHEMA NORMALISATION PATCH..."
+
+cat << 'PYEOF' > phb/memory/recall_engine.py
 def normalize(entry):
     """
     Ensure all memory entries are dict-based
@@ -31,3 +36,6 @@ def build_context(memory_store, query):
     return {
         "context_summary": [r.get("input", "") for r in relevant[-5:]]
     }
+PYEOF
+
+echo "🔄 Restart required after patch"
