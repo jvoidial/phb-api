@@ -1,17 +1,27 @@
 from fastapi import FastAPI, Request, HTTPException
 import traceback
 
-from phb_orchestrator import run_orchestrator
+from user_manager import UserManager
+from phb_orchestrator_v2 import run_agent
 
-app = FastAPI(title="PHB Unified Orchestrator")
+app = FastAPI(title="PHB Neural v2")
 
-@app.post("/v1/companion")
-async def companion(request: Request):
+users = UserManager()
+
+@app.post("/v2/message")
+async def message(request: Request):
     try:
         data = await request.json()
+
+        user_id = data.get("user_id", "default")
         msg = data.get("message", "")
 
-        result = run_orchestrator(msg)
+        state = users.get(user_id)
+
+        result = run_agent(msg, state)
+
+        users.update(user_id, state)
+
         return result
 
     except Exception as e:
@@ -20,4 +30,7 @@ async def companion(request: Request):
 
 @app.get("/")
 def root():
-    return {"status": "ok", "system": "PHB ORCHESTRATOR ACTIVE"}
+    return {
+        "status": "ok",
+        "system": "PHB NEURAL v2 ACTIVE"
+    }
