@@ -1,7 +1,9 @@
 import os
 import sqlite3
+import threading
 
 DB = "phb/state/memory.db"
+lock = threading.Lock()
 
 class Memory:
     def __init__(self):
@@ -18,9 +20,13 @@ class Memory:
         """)
 
     def save(self, user, msg):
-        self.conn.execute("INSERT INTO memory VALUES (?,?)", (user, msg))
-        self.conn.commit()
+        with lock:
+            self.conn.execute("INSERT INTO memory VALUES (?,?)", (user, msg))
+            self.conn.commit()
 
     def get_count(self, user):
-        cur = self.conn.execute("SELECT COUNT(*) FROM memory WHERE user=?", (user,))
+        cur = self.conn.execute(
+            "SELECT COUNT(*) FROM memory WHERE user=?",
+            (user,)
+        )
         return cur.fetchone()[0]
