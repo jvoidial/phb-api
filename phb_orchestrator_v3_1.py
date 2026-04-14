@@ -1,6 +1,4 @@
-from memory_intelligence import MemoryIntelligence
-
-memory = MemoryIntelligence()
+from memory_intelligence import GLOBAL_MEMORY
 
 def infer_mood(text):
     if "tired" in text or "overwhelmed" in text:
@@ -20,7 +18,7 @@ def human_tone(mood, memories):
         base = "I’m listening. "
 
     if memories:
-        base += "I remember this kind of feeling coming up before. "
+        base += "I remember this coming up before. "
 
     return base
 
@@ -28,18 +26,19 @@ def run_agent(user_message, state):
 
     mood = infer_mood(user_message)
 
-    memory.add(user_message, tags=[mood], weight=0.7)
+    # 🧠 STORE MEMORY (NOW PERSISTENT)
+    GLOBAL_MEMORY.add(user_message, tags=[mood], weight=0.7)
 
-    recalled = memory.recall(user_message)
+    # 🧠 RECALL MEMORY
+    recalled = GLOBAL_MEMORY.recall(user_message)
 
     state["turns"] += 1
     state["energy"] = max(1.0, min(10.0, state["energy"] - 0.05))
 
-    response = human_tone(mood, recalled)
-
     return {
         "perception": user_message,
-        "summary": response,
+        "summary": human_tone(mood, recalled),
         "state": state,
-        "memory_hits": recalled
+        "memory_hits": recalled,
+        "memory_size": len(GLOBAL_MEMORY.memories)
     }

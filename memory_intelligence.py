@@ -13,21 +13,17 @@ class MemoryIntelligence:
             "time": time.time()
         })
 
-    # simple similarity scoring (lightweight, no embeddings needed)
     def _score(self, query, memory):
         score = 0.0
 
-        q_words = set(query.lower().split())
-        m_words = set(memory["text"].lower().split())
+        q = set(query.lower().split())
+        m = set(memory["text"].lower().split())
 
-        overlap = len(q_words & m_words)
-        score += overlap * 0.6
-
+        score += len(q & m) * 0.6
         score += memory["weight"] * 0.4
 
         age = time.time() - memory["time"]
-        decay = math.exp(-age / 3600)  # 1-hour decay curve
-        score *= decay
+        score *= math.exp(-age / 3600)
 
         return score
 
@@ -40,5 +36,8 @@ class MemoryIntelligence:
                 scored.append((s, m))
 
         scored.sort(key=lambda x: x[0], reverse=True)
+        return [m for _, m in scored[:top_k]]
 
-        return [m for s, m in scored[:top_k]]
+
+# 🔥 GLOBAL SINGLETON (IMPORTANT FIX)
+GLOBAL_MEMORY = MemoryIntelligence()
