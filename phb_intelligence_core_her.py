@@ -94,6 +94,10 @@ from phb_brain import run_phb_brain
 # --- Unified PHB Brain Integration ---
 from phb_brain import run_phb_brain
 
+
+# --- Unified PHB Brain Integration (clean reinsert) ---
+from phb_brain import run_phb_brain
+
 def run_intelligence_core(user_message: str, recent_context: dict | None = None):
     brain_result = run_phb_brain(user_message)
 
