@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from cognition.core import think
+from phb.cognition.core import think
 
 app = FastAPI(title="PHB AI OS v7.1")
 
@@ -82,7 +82,7 @@ if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
 try:
-    from cognition.core import think
+    from phb.cognition.core import think
 except Exception:
     def think(message):
         return {
