@@ -1,6 +1,6 @@
 from phb.brain.global_brain import GlobalBrain
 from phb.memory.recall_engine import build_context
-from phb.memory.intelligence import categorize
+from phb.agent.goal_engine import generate_goals, prioritize
 from phb.meta.self_reflection import reflect
 from phb.brain.p2p_live import live_sync
 from datetime import datetime, timezone
@@ -10,60 +10,64 @@ BRAIN = GlobalBrain()
 def think(message, state=None, user_id="default"):
     brain = BRAIN.load()
 
-    # ---------------------------
-    # FIXED STRUCTURE (IMPORTANT)
-    # ---------------------------
     brain.setdefault("memory", {})
     brain.setdefault("timeline", [])
     brain.setdefault("meta", {})
 
     now = datetime.now(timezone.utc)
 
-    # ---------------------------
-    # MEMORY STORAGE
-    # ---------------------------
+    # ------------------------
+    # STORE MEMORY
+    # ------------------------
     brain["memory"][str(now.timestamp())] = {
-        "user": user_id,
         "input": message,
+        "user": user_id,
         "time": now.isoformat()
     }
 
-    # ---------------------------
-    # TIMELINE FIX (APPEND ONLY)
-    # ---------------------------
     brain["timeline"].append({
-        "event": "interaction",
+        "event": "input",
         "message": message,
         "time": now.isoformat()
     })
 
-    # ---------------------------
-    # RECALL + INTELLIGENCE
-    # ---------------------------
+    # ------------------------
+    # MEMORY RECALL
+    # ------------------------
     context = build_context(brain["memory"], message)
-    categorized = categorize(brain["memory"])
 
+    # ------------------------
+    # GOAL GENERATION (NEW)
+    # ------------------------
+    goals = generate_goals(brain["memory"], brain["timeline"])
+    goals = prioritize(goals)
+
+    # ------------------------
+    # REFLECTION + SYNC
+    # ------------------------
     brain = reflect(brain)
-    sync_status = live_sync()
+    sync = live_sync()
 
     BRAIN.save(brain)
 
+    # ------------------------
+    # RESPONSE
+    # ------------------------
     return {
-        "engine": "cognition-core-v3.71-fixed",
+        "engine": "cognition-core-v3.80-agent-loop",
         "input": message,
-        "user_id": user_id,
 
         "memory_recall": context["context_summary"],
 
+        "active_goals": goals,
+
         "brain_snapshot": {
             "memory_count": len(brain["memory"]),
-            "timeline_events": len(brain["timeline"]),
-            "important_memories": len(categorized["important"])
+            "timeline_events": len(brain["timeline"])
         },
 
-        "reflection": brain["meta"].get("reflection"),
-        "p2p_sync": sync_status,
+        "p2p_sync": sync,
 
-        "response": f"PHB fixed + recalled: {message}",
+        "response": f"PHB agent processed: {message}",
         "timestamp": now.isoformat()
     }
