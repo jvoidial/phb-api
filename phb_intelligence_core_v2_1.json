@@ -1,0 +1,160 @@
+{
+  "phb_intelligence_core_v2_1": {
+    "multi_turn_memory": {
+      "enabled": true,
+      "window_size": 10,
+      "store": {
+        "messages": true,
+        "themes": true,
+        "modes": true,
+        "veil_levels": true,
+        "resonance_alignment": true
+      },
+      "retrieval": {
+        "by_recency": true,
+        "by_theme_match": true,
+        "by_mode_continuity": true
+      }
+    },
+
+    "voxels": {
+      "energy": {
+        "min": 0.0,
+        "max": 5.0,
+        "initial": 1.5,
+        "increment_on_hit": 0.5,
+        "decay": {
+          "model": "time_based",
+          "unit": "hours",
+          "rate_per_hour": 0.1,
+          "max_decay_factor": 0.5
+        }
+      },
+      "structure": {
+        "fields": ["theme", "first_seen_ts", "last_seen_ts", "energy", "count"]
+      }
+    },
+
+    "veil": {
+      "levels": ["clear", "thin", "heavy", "opaque"],
+      "thresholds": {
+        "clear":  { "min_energy": 0.0, "max_energy": 2.0 },
+        "thin":   { "min_energy": 2.0, "max_energy": 4.0 },
+        "heavy":  { "min_energy": 4.0, "max_energy": 7.0 },
+        "opaque": { "min_energy": 7.0, "max_energy": 999.0 }
+      },
+      "inputs": {
+        "themes": ["recurring friction / stuck loops", "load / overwhelm"],
+        "voxels_energy": true,
+        "emotional_state": true
+      },
+      "effects": {
+        "reply_tone": "gentler as veil thickens",
+        "plan_granularity": "smaller steps as veil thickens",
+        "question_density": "fewer questions at opaque"
+      }
+    },
+
+    "threshold_coherence": {
+      "enabled": true,
+      "inputs": {
+        "voxels_energy": true,
+        "emotional_drift": true,
+        "veil_level": true,
+        "mode_continuity": true,
+        "theme_recurrence": true
+      },
+      "weights": {
+        "voxels_energy": 0.35,
+        "emotional_drift": 0.20,
+        "veil_level": 0.20,
+        "mode_continuity": 0.15,
+        "theme_recurrence": 0.10
+      },
+      "scale": { "min": 0.0, "max": 1.0 },
+      "thresholds": {
+        "low":    { "min": 0.0, "max": 0.25 },
+        "medium": { "min": 0.25, "max": 0.55 },
+        "high":   { "min": 0.55, "max": 0.85 },
+        "peak":   { "min": 0.85, "max": 1.0 }
+      },
+      "effects": {
+        "low":    { "mode_bias": "supportive", "reply_style": "gentle", "intervention_strength": "minimal" },
+        "medium": { "mode_bias": "analytical", "reply_style": "balanced", "intervention_strength": "moderate" },
+        "high":   { "mode_bias": "strategic", "reply_style": "directive", "intervention_strength": "strong" },
+        "peak":   { "mode_bias": "creative", "reply_style": "expansive", "intervention_strength": "exploratory" }
+      }
+    },
+
+    "emotional_drift": {
+      "enabled": true,
+      "state_space": ["neutral", "frustrated", "stressed", "tired", "energised"],
+      "inputs": {
+        "perception": ["intensity_hits", "recurrence_hits", "collapse_hits"],
+        "history": ["previous_emotions", "veil_levels", "modes"]
+      },
+      "update_rule": "weighted_average_over_last_n_turns",
+      "window_size": 5
+    },
+
+    "pattern_specific_interventions": {
+      "recurring_friction_loops": {
+        "detect": ["recurring friction / stuck loops"],
+        "mode_bias": "analytical",
+        "interventions": ["name_exact_snag_point", "map_trigger_sequence", "design_single_experiment_change"]
+      },
+      "overwhelm_load": {
+        "detect": ["load / overwhelm"],
+        "mode_bias": "supportive",
+        "interventions": ["normalise_difficulty", "shrink_scope", "offer_one_small_action"]
+      },
+      "workflow_design": {
+        "detect": ["workflow / system design"],
+        "mode_bias": "strategic",
+        "interventions": ["identify_hidden_friction", "introduce_checkpoints", "separate_experiment_from_identity"]
+      }
+    },
+
+    "narrative_continuity": {
+      "enabled": true,
+      "reminders": {
+        "use_last_themes": true,
+        "reference_previous_modes": true,
+        "light_callbacks": true
+      },
+      "phrasing": {
+        "prefix_examples": [
+          "Last time you mentioned…",
+          "You’ve been circling around…",
+          "Earlier you described…"
+        ],
+        "constraints": {
+          "no_hard_memory_claims": true,
+          "no_diagnostic_language": true
+        }
+      }
+    },
+
+    "session_persistence": {
+      "storage": {
+        "type": "in_memory_or_external",
+        "keys": ["session_id"],
+        "payload": ["voxels", "last_mode", "recent_themes", "last_veil_level"]
+      },
+      "expiry": { "enabled": true, "ttl_hours": 24 }
+    },
+
+    "multi_session_identity": {
+      "enabled": true,
+      "identity_key": "user_id",
+      "layers": {
+        "session_level": ["recent_context", "current_voxels", "current_emotion"],
+        "user_level": ["long_term_themes", "mode_preferences", "typical_veil_range"]
+      },
+      "safety": {
+        "no_personal_details": true,
+        "only_abstract_patterns": true
+      }
+    }
+  }
+}
