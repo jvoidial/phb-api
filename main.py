@@ -33,3 +33,6 @@ async def companion(request: Request):
 @app.get("/")
 def root():
     return {"status": "ok", "msg": "PHB HER‑MODE active"}
+
+# Force Nixpacks to include PHB brain module
+import phb_brain
