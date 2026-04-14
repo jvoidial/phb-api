@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🧠 PHB AI OS STARTING (IMPORT-STABLE MODE)..."
+echo "🧠 PHB AI OS STARTING (CLEAN ROOT MODE)..."
 
 cd "$(dirname "$0")"
 
