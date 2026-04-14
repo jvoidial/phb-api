@@ -36,3 +36,7 @@ def root():
 
 # Force Nixpacks to include PHB brain module
 import phb_brain
+
+# Force Nixpacks to include companion mind modules
+import phb_companion_mind
+import phb_brain
