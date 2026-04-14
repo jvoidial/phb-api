@@ -12,8 +12,13 @@ async def companion(request: Request):
 
         print(f"[PHB] Incoming: {user_message}")
 
+        # HER‑MODE ENGINE (LOCAL)
         from phb_intelligence_core_her import run_intelligence_core
-        result = run_intelligence_core(user_message=user_message, recent_context={})
+
+        result = run_intelligence_core(
+            user_message=user_message,
+            recent_context={}
+        )
 
         print(f"[PHB] HER‑MODE OK: {result}")
         return result
