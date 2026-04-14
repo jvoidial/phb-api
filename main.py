@@ -4,7 +4,7 @@ import traceback
 from user_manager import UserManager
 from phb_orchestrator_v3 import run_agent
 
-app = FastAPI(title="PHB Neural v3 ACTIVE")
+app = FastAPI(title="PHB NEURAL v3 FULL ACTIVE SYSTEM")
 
 users = UserManager()
 
