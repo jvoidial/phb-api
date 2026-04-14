@@ -90,3 +90,11 @@ except Exception:
             "input": message,
             "response": "cognition fallback active"
         }
+
+from phb.brain.global_brain import GlobalBrain
+
+BRAIN = GlobalBrain()
+
+@app.get("/brain-state")
+def brain_state():
+    return BRAIN.load()
